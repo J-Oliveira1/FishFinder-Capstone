@@ -1,1 +1,1 @@
-# FishFInder-Capstone
+# FishFinder-Capstone
