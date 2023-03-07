@@ -3,7 +3,7 @@ from authentication.models import User
 from fish_posts.models import FishPosts
 
 # Create your models here.
-class FishingHoles(models.Model):
+class FishingHole(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     record_fish = models.ForeignKey(FishPosts, on_delete=models.CASCADE)
     address = models.CharField(max_length=225)
