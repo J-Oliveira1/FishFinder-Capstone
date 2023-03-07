@@ -8,4 +8,4 @@ class FishPost(models.Model):
     fishing_hole = models.ForeignKey(FishingHole, on_delete=models.CASCADE)
     type = models.CharField(max_length=225)
     photo = models.CharField(max_length=255)
-    size = models.DecimalField(max_digits=3)
+    size = models.DecimalField(max_digits=3, decimal_places=2, blank=True, null=True)
