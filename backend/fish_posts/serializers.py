@@ -8,5 +8,5 @@ class FishPostSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = FishPost
-        fields = ['id', 'user', 'fishing_hole_id', 'type', 'photo', 'size']
+        fields = ['id', 'username', 'fishing_hole_id', 'type', 'photo', 'size']
         depth = 1

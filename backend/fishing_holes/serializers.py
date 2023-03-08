@@ -8,5 +8,5 @@ class FishingHoleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = FishingHole
-        fields = ['id', 'user', 'record_fish', 'address', 'latitude', 'longitude', 'parking', 'restroom']
+        fields = ['id', 'username', 'record_fish', 'address', 'latitude', 'longitude', 'parking', 'restroom']
         depth = 1

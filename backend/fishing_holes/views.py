@@ -11,8 +11,8 @@ from .serializers import FishingHoleSerializer
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_all_fishing_holes(request, fishing_holes_id):
-    fishing_holes = FishingHole.objects.filter(fishing_holes_id=fishing_holes_id)
+def get_all_fishing_holes(request):
+    fishing_holes = FishingHole.objects.all()
     serializer = FishingHoleSerializer(fishing_holes, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
