@@ -19,12 +19,27 @@ def get_all_fishing_holes(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def user_fishing_holes(request):
-    print(
-        'User ', f"{request.user.id} {request.user.email} {request.user.username}"
-    )
     if request.method == 'POST':
         serializer = FishingHoleSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_fishing_holes(request, fishing_holes_id):
+    fishing_hole = get_object_or_404(FishingHole, pk=fishing_holes_id)
+    if request.method == 'PUT':
+        serializer = FishingHoleSerializer(fishing_hole, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_fishing_holes(request, fishing_holes_id):
+    fishing_hole = get_object_or_404(FishingHole, pk=fishing_holes_id)
+    fishing_hole.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
