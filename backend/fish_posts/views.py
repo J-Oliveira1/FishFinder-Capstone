@@ -1,26 +1,30 @@
 from django.shortcuts import render
+from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, parser_classes
 from .models import FishPost
 from .serializers import FishPostSerializer
 
 
 
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def get_fish_posts(request, fishing_hole_id):
+def get_fish_posts(request, fishing_hole_id, ):
     fish_posts = FishPost.objects.filter(fishing_hole_id=fishing_hole_id)
     serializer = FishPostSerializer(fish_posts, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
+@parser_classes([MultiPartParser, FormParser])
 def fishing_posts(request, fishing_hole_id):
     if request.method == 'POST':
+        # data = request.data.copy()
+        # data['user'] = request.user.id
+        # data['fishing_hole'] = fishing_hole_id
         serializer = FishPostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user, fishing_hole_id=fishing_hole_id)
@@ -29,6 +33,7 @@ def fishing_posts(request, fishing_hole_id):
     
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
+@parser_classes([MultiPartParser, FormParser])
 def update_fish_posts(request, fishing_hole_id, fish_posts_id):
     fish_posts = get_object_or_404(FishPost, pk=fish_posts_id, fishing_hole_id=fishing_hole_id)
     if request.method == 'PUT':
