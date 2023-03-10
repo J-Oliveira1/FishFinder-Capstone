@@ -22,9 +22,6 @@ def get_fish_posts(request, fishing_hole_id, ):
 @parser_classes([MultiPartParser, FormParser])
 def fishing_posts(request, fishing_hole_id):
     if request.method == 'POST':
-        # data = request.data.copy()
-        # data['user'] = request.user.id
-        # data['fishing_hole'] = fishing_hole_id
         serializer = FishPostSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user, fishing_hole_id=fishing_hole_id)
