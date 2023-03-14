@@ -20,7 +20,7 @@ const Navbar = () => {
         </li>
         <li>About</li>
         <li>
-          <Link to="/lists">Fishing Holes</Link>
+          <Link to="/fishingholes">Fishing Holes</Link>
           <li />
           {user ? (
             <button onClick={logoutUser}>Logout</button>
