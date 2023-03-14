@@ -3,7 +3,7 @@
 const FishingHole = ({ fishingHole }) => {
   return (
     <div>
-      <p>{fishingHole.username}</p>
+      <h3>{fishingHole.username}</h3>
       <p>{fishingHole.address}</p>
       <p>{fishingHole.latitude}</p>
       <p>{fishingHole.longitude}</p>

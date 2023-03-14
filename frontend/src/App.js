@@ -18,7 +18,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import Test from "./components/Test/Test";
 import useAuth from "./hooks/useAuth";
 import { useEffect, useState } from "react";
-import DisplayPage from "./components/DisplayPage/DisplayPage";
+import MapPage from "./components/MapPage/MapPage";
 
 function App() {
 
@@ -41,7 +41,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/lists" element={<DisplayPage />} />
+        <Route path="/lists" element={<MapPage />} />
       </Routes>
       <Footer />
     </div>
