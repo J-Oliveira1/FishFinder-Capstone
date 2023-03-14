@@ -5,8 +5,9 @@ import DeleteFishingHole from "../DeleteFishingHole/DeleteFishingHole";
 import UpdateFishingHole from "../UpdateFishingHole/UpdateFishingHole";
 import FishPostForm from "../FishPostForm/FishPostForm";
 import FishPost from "../FishPost/FishPost";
+import DeleteFishPost from "../DeleteFishPost/DeleteFishPost";
 
-const FishingHoleList = ({ fishingHole }) => {
+const FishingHoleList = ({ fishPost }) => {
   const [fishingHoles, setFishingHoles] = useState([]);
   const [selectedFishingHole, setSelectedFishingHole] = useState(null);
   const [fishingHoleToUpdate, setFishingHoleToUpdate] = useState(null);
@@ -39,7 +40,7 @@ const FishingHoleList = ({ fishingHole }) => {
 
   const handleFishingHoleClick = async (fishingHole) => {
     if (selectedFishingHole?.id === fishingHole.id) {
-      // Hide the fish posts if clicking the same fishing hole again
+      // Hides the fish posts if clicking the same fishing hole again, cleans up the page instead of having it cluttered.
       setSelectedFishingHole(null);
       setFishPosts([]);
     } else {
@@ -69,11 +70,17 @@ const FishingHoleList = ({ fishingHole }) => {
           <button onClick={() => setFishingHoleToUpdate(fishingHole)}>
             Update
           </button>
-
           {selectedFishingHole && (
             <div>
               {fishPosts.map((fishPost) => (
-                <FishPost key={fishPost.id} fishPost={fishPost} />
+                <div key={fishPost.id}>
+                  <FishPost fishPost={fishPost} />
+                  <DeleteFishPost
+                          id={fishPost.id} 
+                          ondelete={() => fetchFishPosts(fishingHole.id)} 
+                          fishingHoleId={fishingHole.id} 
+                  />
+                </div>
               ))}
               <FishPostForm
                 fishingHoleId={fishingHole.id}

@@ -30,13 +30,14 @@ const FishPostForm = ({ fishingHoleId }) => {
       .post(url, form_data, {
         headers: {
           "content-type": "multipart/form-data",
-          ...config.headers
+          ...config.headers,
         },
       })
       .then((res) => {
         console.log(res.data);
       })
       .catch((err) => console.log(err));
+    alert(`Must be signed in to post!`);
   };
 
   return (
@@ -46,7 +47,7 @@ const FishPostForm = ({ fishingHoleId }) => {
           <input
             type="text"
             placeholder="Type of Fish"
-            id="type" 
+            id="type"
             value={formData.type}
             onChange={handleChange}
             required
@@ -56,7 +57,7 @@ const FishPostForm = ({ fishingHoleId }) => {
           <input
             type="text"
             placeholder="Size of Fish"
-            id="size" 
+            id="size"
             value={formData.size}
             onChange={handleChange}
             required

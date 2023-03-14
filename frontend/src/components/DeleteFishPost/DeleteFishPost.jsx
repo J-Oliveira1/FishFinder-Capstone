@@ -1,12 +1,12 @@
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const DeleteFishingHole = ({ id, ondelete }) => {
+const DeleteFishPost = ({ id, ondelete, fishingHoleId }) => {
   const { config } = useAuth();
-  const deleteFishingHole = async () => {
+  const deleteFishPost = async () => {
     try {
       await axios.delete(
-        `http://127.0.0.1:8000/api/fishing_holes/${id}/delete/`,
+        `http://127.0.0.1:8000/api/fishing_holes/${fishingHoleId}/fish_posts/${id}/delete/`,
         {
           headers: {
             "content-type": "multipart/form-data",
@@ -18,8 +18,7 @@ const DeleteFishingHole = ({ id, ondelete }) => {
     } catch (error) {}
     alert(`Must be signed in to delete!`)
   };
-
-  return <button onClick={deleteFishingHole}>Delete</button>;
+  return <button onClick={deleteFishPost}>Delete</button>;
 };
 
-export default DeleteFishingHole;
+export default DeleteFishPost;
