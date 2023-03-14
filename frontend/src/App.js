@@ -1,7 +1,7 @@
 // General Imports
 
 import { Routes, Route } from "react-router-dom";
-
+import axios from "axios";
 import "./App.css";
 
 // Pages Imports
@@ -15,9 +15,17 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import Test from "./components/Test/Test";
+import useAuth from "./hooks/useAuth";
+import { useEffect, useState } from "react";
 import DisplayPage from "./components/DisplayPage/DisplayPage";
 
 function App() {
+
+
+
+
+
   return (
     <div>
       <Navbar />
@@ -32,7 +40,8 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/home" element={<DisplayPage />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/lists" element={<DisplayPage />} />
       </Routes>
       <Footer />
     </div>

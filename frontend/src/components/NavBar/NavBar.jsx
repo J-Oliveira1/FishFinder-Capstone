@@ -15,9 +15,13 @@ const Navbar = () => {
             <b>FishFinder</b>
           </Link>
         </li>
-        <li>Home</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
         <li>About</li>
-        <li>Fishing Holes<li/>
+        <li>
+          <Link to="/lists">Fishing Holes</Link>
+          <li />
           {user ? (
             <button onClick={logoutUser}>Logout</button>
           ) : (
