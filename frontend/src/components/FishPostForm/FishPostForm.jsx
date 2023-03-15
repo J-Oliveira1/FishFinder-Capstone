@@ -37,11 +37,11 @@ const FishPostForm = ({ fishingHoleId }) => {
         console.log(res.data);
       })
       .catch((err) => console.log(err));
-    alert(`Must be signed in to post!`);
   };
 
   return (
-    <div className="App">
+    <div>
+      <h4>Add New Fish Post</h4>
       <form onSubmit={handleSubmit}>
         <p>
           <input

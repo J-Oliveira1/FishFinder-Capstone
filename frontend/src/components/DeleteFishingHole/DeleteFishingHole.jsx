@@ -15,8 +15,8 @@ const DeleteFishingHole = ({ id, ondelete }) => {
         }
       );
       ondelete(id);
-    } catch (error) {}
-    alert(`Must be signed in to delete!`)
+    } catch (error) {    alert(`Must be signed in to delete!`)}
+
   };
 
   return <button onClick={deleteFishingHole}>Delete</button>;

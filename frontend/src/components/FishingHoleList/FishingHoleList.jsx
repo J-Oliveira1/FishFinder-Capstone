@@ -6,11 +6,14 @@ import UpdateFishingHole from "../UpdateFishingHole/UpdateFishingHole";
 import FishPostForm from "../FishPostForm/FishPostForm";
 import FishPost from "../FishPost/FishPost";
 import DeleteFishPost from "../DeleteFishPost/DeleteFishPost";
+import UpdateFishPost from "../UpdateFishPost/UpdateFishPost";
 
 const FishingHoleList = ({ fishPost }) => {
   const [fishingHoles, setFishingHoles] = useState([]);
   const [selectedFishingHole, setSelectedFishingHole] = useState(null);
   const [fishingHoleToUpdate, setFishingHoleToUpdate] = useState(null);
+  const [fishPostToUpdate, setFishPostToUpdate] = useState(null);
+  const [selectedFishPost, setSelectedFishPost] = useState(null);
   const [fishPosts, setFishPosts] = useState([]);
 
   useEffect(() => {
@@ -48,6 +51,12 @@ const FishingHoleList = ({ fishPost }) => {
       await fetchFishPosts(fishingHole.id);
     }
   };
+  const handleFishPostClick = async (fishPost) => {
+    if (selectedFishPost?.id === fishPost.id) {
+      setSelectedFishPost(null);
+      setFishPosts([]);
+    }
+  };
 
   const fetchFishPosts = async (fishingHoleId) => {
     try {
@@ -74,12 +83,24 @@ const FishingHoleList = ({ fishPost }) => {
             <div>
               {fishPosts.map((fishPost) => (
                 <div key={fishPost.id}>
+                  <h2>Fish Posts</h2>
                   <FishPost fishPost={fishPost} />
                   <DeleteFishPost
-                          id={fishPost.id} 
-                          ondelete={() => fetchFishPosts(fishingHole.id)} 
-                          fishingHoleId={fishingHole.id} 
+                    id={fishPost.id}
+                    ondelete={() => fetchFishPosts(fishingHole.id)}
+                    fishingHoleId={fishingHole.id}
                   />
+                  <button onClick={() => setFishPostToUpdate(fishPost)}>
+                    Update
+                  </button>
+                  {fishPostToUpdate && (
+                    <UpdateFishPost
+                      fishPost={fishPost}
+                      fishPostId={fishPost.id}
+                      fishingHoleId={fishingHole.id}
+                      setFishPostToUpdate={setFishPostToUpdate}
+                    />
+                  )}
                 </div>
               ))}
               <FishPostForm
