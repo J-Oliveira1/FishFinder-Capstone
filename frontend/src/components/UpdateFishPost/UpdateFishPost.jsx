@@ -8,27 +8,33 @@ const UpdateFishPost = ({
   fishPostId,
   setFishPostToUpdate,
 }) => {
-  const { config } = useAuth();
+  const { config, user } = useAuth();
   const [updatedFishingPost, setUpdatedFishingPost] = useState(fishPost);
   const [formData, setFormData] = useState({ image: null, type: "", size: "" });
+  const [previewImageUrl, setPreviewImageUrl] = useState([]);
 
   useEffect(() => {
     setUpdatedFishingPost(fishPost);
   }, [fishPost]);
 
   const updateFishingPost = (data) => {
-    const url = `http://127.0.0.1:8000/api/fishing_holes/${fishingHoleId}/fish_posts/${fishPostId}/update/`;
-    axios
-      .put(url, data, {
-        headers: {
-          "content-type": "multipart/form-data",
-          ...config.headers,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
+    if (!user) {
+      alert("You must be logged in to update a Fish Post!!");
+      return;
+    }
+    try {
+      const response = axios.put(
+        `http://127.0.0.1:8000/api/fishing_holes/${fishingHoleId}/fish_posts/${fishPostId}/update/`,
+        updatedFishingPost,
+        config
+      );
+      if (response.status === 200) {
+        console.log(response);
+        setUpdatedFishingPost(null);
+      }
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+    }
   };
 
   function handleSubmit(event) {
@@ -44,7 +50,14 @@ const UpdateFishPost = ({
   }
 
   const handleImageChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
+    const selectedFile = e.target.files[0];
+    setFormData({ ...formData, image: selectedFile });
+
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+    reader.onloadend = () => {
+      setPreviewImageUrl(reader.result);
+    };
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -86,6 +99,9 @@ const UpdateFishPost = ({
           onChange={handleImageChange}
           required
         />
+        {previewImageUrl && (
+          <img src={previewImageUrl} alt="Preview" style={{ maxWidth: 200 }} />
+        )}
       </label>
       <button type="submit">Update</button>
       <button type="button" onClick={handleCancel}>

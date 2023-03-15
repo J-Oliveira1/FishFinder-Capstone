@@ -3,7 +3,7 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
 const UpdateFishingHole = ({ fishingHole, setFishingHoleToUpdate }) => {
-  const { config } = useAuth();
+  const { config, user } = useAuth();
   const [updatedFishingHole, setUpdatedFishingHole] = useState(fishingHole);
 
   useEffect(() => {
@@ -11,14 +11,22 @@ const UpdateFishingHole = ({ fishingHole, setFishingHoleToUpdate }) => {
   }, [fishingHole]);
 
   async function updateFishingHole(updatedFishHole) {
-    const response = await axios.put(
-      `http://127.0.0.1:8000/api/fishing_holes/${updatedFishHole.id}/update/`,
-      updatedFishHole,
-      config
-    );
-    if (response.status === 200) {
-      console.log(response);
-      setFishingHoleToUpdate(null);
+    if (!user) {
+      alert("You must be logged in to update a fishing hole.");
+      return;
+    }
+    try {
+      const response = await axios.put(
+        `http://127.0.0.1:8000/api/fishing_holes/${updatedFishHole.id}/update/`,
+        updatedFishHole,
+        config
+      );
+      if (response.status === 200) {
+        console.log(response);
+        setFishingHoleToUpdate(null);
+      }
+    } catch (error) {
+      alert(`Error: ${error.message}`);
     }
   }
 
