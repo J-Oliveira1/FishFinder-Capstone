@@ -8,6 +8,7 @@ import FishPost from "../FishPost/FishPost";
 import DeleteFishPost from "../DeleteFishPost/DeleteFishPost";
 import UpdateFishPost from "../UpdateFishPost/UpdateFishPost";
 import CommentList from "../CommentList/CommentList";
+import CommentForm from "../CommentForm/CommentForm";
 
 const FishingHoleList = ({ fishPost, fishingHoleId }) => {
   const [fishingHoles, setFishingHoles] = useState([]);
@@ -77,6 +78,7 @@ const FishingHoleList = ({ fishPost, fishingHoleId }) => {
             onClick={handleFishingHoleClick}
           />
           <CommentList fishingHoleId={fishingHole.id}/>
+          <CommentForm fishingHoleId={fishingHole.id}/>
           <DeleteFishingHole id={fishingHole.id} ondelete={fetchFishingHoles} />
           <button onClick={() => setFishingHoleToUpdate(fishingHole)}>
             Update
