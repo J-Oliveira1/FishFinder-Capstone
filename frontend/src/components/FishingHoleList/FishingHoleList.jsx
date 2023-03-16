@@ -99,6 +99,7 @@ const FishingHoleList = ({ fishPost }) => {
                       fishPostId={fishPost.id}
                       fishingHoleId={fishingHole.id}
                       setFishPostToUpdate={setFishPostToUpdate}
+                      setFishPosts={setFishPosts}
                     />
                   )}
                 </div>

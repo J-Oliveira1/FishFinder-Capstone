@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
+import GoogleMap from "../../components/GoogleMapDisplay/GoogleMapDisplay";
+import GoogleMapDisplay from "../../components/GoogleMapDisplay/GoogleMapDisplay";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -25,6 +27,7 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
+      <GoogleMapDisplay/>
       {fishingSpots &&
         fishingSpots.map((fishingSpot) => (
           <p key={fishingSpot.id}>
@@ -32,6 +35,7 @@ const HomePage = () => {
           </p>
         ))}
     </div>
+
   );
 };
 

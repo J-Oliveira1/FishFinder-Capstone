@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 
 const UpdateFishPost = ({
   fishPost,
+  setFishPosts,
   fishingHoleId,
   fishPostId,
   setFishPostToUpdate,
@@ -17,20 +18,25 @@ const UpdateFishPost = ({
     setUpdatedFishingPost(fishPost);
   }, [fishPost]);
 
-  const updateFishingPost = (data) => {
+ async function updateFishingPost(data) {
     if (!user) {
       alert("You must be logged in to update a Fish Post!!");
       return;
     }
     try {
-      const response = axios.put(
+      const response = await axios.put(
         `http://127.0.0.1:8000/api/fishing_holes/${fishingHoleId}/fish_posts/${fishPostId}/update/`,
-        updatedFishingPost,
+        data,
         config
       );
       if (response.status === 200) {
-        console.log(response);
+        const getResponse = await axios.get(`http://127.0.0.1:8000/api/fishing_holes/${fishingHoleId}/fish_posts/`, config);
+        if (getResponse.status === 200) {
+          // Update the state with the new data
+          console.log(response);
+          setFishPosts(getResponse.data);
         setUpdatedFishingPost(null);
+        }
       }
     } catch (error) {
       alert(`Error: ${error.message}`);
