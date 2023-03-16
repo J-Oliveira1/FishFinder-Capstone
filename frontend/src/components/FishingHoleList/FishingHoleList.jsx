@@ -7,8 +7,9 @@ import FishPostForm from "../FishPostForm/FishPostForm";
 import FishPost from "../FishPost/FishPost";
 import DeleteFishPost from "../DeleteFishPost/DeleteFishPost";
 import UpdateFishPost from "../UpdateFishPost/UpdateFishPost";
+import CommentList from "../CommentList/CommentList";
 
-const FishingHoleList = ({ fishPost }) => {
+const FishingHoleList = ({ fishPost, fishingHoleId }) => {
   const [fishingHoles, setFishingHoles] = useState([]);
   const [selectedFishingHole, setSelectedFishingHole] = useState(null);
   const [fishingHoleToUpdate, setFishingHoleToUpdate] = useState(null);
@@ -75,6 +76,7 @@ const FishingHoleList = ({ fishPost }) => {
             fishingHole={fishingHole}
             onClick={handleFishingHoleClick}
           />
+          <CommentList fishingHoleId={fishingHole.id}/>
           <DeleteFishingHole id={fishingHole.id} ondelete={fetchFishingHoles} />
           <button onClick={() => setFishingHoleToUpdate(fishingHole)}>
             Update
