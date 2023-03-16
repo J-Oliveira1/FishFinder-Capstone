@@ -27,7 +27,7 @@ const HomePage = () => {
   return (
     <div className="container">
       <h1>Home Page for {user.username}!</h1>
-      <GoogleMapDisplay/>
+
       {fishingSpots &&
         fishingSpots.map((fishingSpot) => (
           <p key={fishingSpot.id}>

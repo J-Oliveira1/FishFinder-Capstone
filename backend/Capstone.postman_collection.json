@@ -1,0 +1,647 @@
+{
+	"info": {
+		"_postman_id": "7bcd8049-2fcf-420e-a88d-5ade722ab93c",
+		"name": "Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25207145"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"joefishes\",\r\n    \"password\": \"password1@\",\r\n    \"email\": \"fake@fake.com\",\r\n    \"first_name\": \"Joe\",\r\n    \"last_name\": \"Oliveira\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/register/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"joefishes\",\r\n    \"password\": \"password1@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh_Access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh\": \"PASTE REFRESH TOKEN FROM LOGIN HERE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/login/refresh/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "GET all cars (unprotected)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/all/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET cars for user (protected)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4MTU2ODM5LCJpYXQiOjE2NDcyOTI4MzksImp0aSI6ImJjYzJhZTUzOTRlYzQ3OThiNjI0YTcwYTYzYjcxOThmIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJqanZlZ2EiLCJmaXJzdF9uYW1lIjoiIn0.l9ATW5CpWF2TGniqVgU1I-a8LkuqgLQ4ok3tJh6asAA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST new car for user (protected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ4MTU3MjczLCJpYXQiOjE2NDcyOTMyNzMsImp0aSI6IjIyMDQ4YTg2NzEzMTQyMmZhZjJmNDNmYmI2MTExZDg2IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.DeTe47E7-9eCr7xKE22m3CvFMDj0Sxye5A6ndwJ024M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"make\": \"Ford\",\n    \"model\": \"F150\",\n    \"year\": 1999\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/cars/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"cars",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fishing_Holes",
+			"item": [
+				{
+					"name": "Get_All_FIshing_Holes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/all/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Fishing_Hole",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MDkyNzc2LCJpYXQiOjE2NzgyMjg3NzYsImp0aSI6ImY3NmUwZjg2NjIyZTQ3ZTJhYjU0MDQzZTQ3YzBiZmZkIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.UvFd0zuui1pUgGSsv-qd3O3byeXPPTfi-5eKGbBjFDI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"record_fish\": \"\",\r\n    \"address\": \"testing\",\r\n    \"latitude\": \"1\",\r\n    \"longitude\": \"1\",\r\n    \"parking\": \"testing\",\r\n    \"restroom\": \"testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Fishing_Holes",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MDkyNzc2LCJpYXQiOjE2NzgyMjg3NzYsImp0aSI6ImY3NmUwZjg2NjIyZTQ3ZTJhYjU0MDQzZTQ3YzBiZmZkIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.UvFd0zuui1pUgGSsv-qd3O3byeXPPTfi-5eKGbBjFDI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"record_fish\": \"\",\r\n    \"address\": \"testing\",\r\n    \"latitude\": \"1\",\r\n    \"longitude\": \"1\",\r\n    \"parking\": \"no parking\",\r\n    \"restroom\": \"testing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/3/update/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"3",
+								"update",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Fishing_Holes",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MDkyNzc2LCJpYXQiOjE2NzgyMjg3NzYsImp0aSI6ImY3NmUwZjg2NjIyZTQ3ZTJhYjU0MDQzZTQ3YzBiZmZkIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.UvFd0zuui1pUgGSsv-qd3O3byeXPPTfi-5eKGbBjFDI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/2/delete/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"2",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fish_Posts",
+			"item": [
+				{
+					"name": "Get_All_Fish_Posts",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/31/fish_posts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"31",
+								"fish_posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Fish_Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MDkyNzc2LCJpYXQiOjE2NzgyMjg3NzYsImp0aSI6ImY3NmUwZjg2NjIyZTQ3ZTJhYjU0MDQzZTQ3YzBiZmZkIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.UvFd0zuui1pUgGSsv-qd3O3byeXPPTfi-5eKGbBjFDI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"contentType": "\"multipart/form-data\"",
+									"type": "file",
+									"src": "/C:/Users/Joseph Oliveira/Downloads/largemouth-bass-open-mouthed-pic.jpg"
+								},
+								{
+									"key": "type",
+									"value": "bass",
+									"contentType": "\"application/json\"",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "9.5",
+									"contentType": "\"application/json\"",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/4/fish_posts/new/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"4",
+								"fish_posts",
+								"new",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_FIsh_Posts",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MDkyNzc2LCJpYXQiOjE2NzgyMjg3NzYsImp0aSI6ImY3NmUwZjg2NjIyZTQ3ZTJhYjU0MDQzZTQ3YzBiZmZkIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.UvFd0zuui1pUgGSsv-qd3O3byeXPPTfi-5eKGbBjFDI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"contentType": "\"multipart/form-data\"",
+									"type": "file",
+									"src": "/C:/Users/Joseph Oliveira/Downloads/largemouth-bass-open-mouthed-pic.jpg"
+								},
+								{
+									"key": "type",
+									"value": "bass",
+									"contentType": "\"application/json\"",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "7",
+									"contentType": "\"application/json\"",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/4/fish_posts/15/update/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"4",
+								"fish_posts",
+								"15",
+								"update",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Fish_Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MDkyNzc2LCJpYXQiOjE2NzgyMjg3NzYsImp0aSI6ImY3NmUwZjg2NjIyZTQ3ZTJhYjU0MDQzZTQ3YzBiZmZkIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.UvFd0zuui1pUgGSsv-qd3O3byeXPPTfi-5eKGbBjFDI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/4/fish_posts/14/delete/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"4",
+								"fish_posts",
+								"14",
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Get_All_Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/33/comments/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"33",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5ODQ2NDgxLCJpYXQiOjE2Nzg5ODI0ODEsImp0aSI6ImI2NmQ0MTU3MzhkYzRiM2RhNzllNjk3YTY5ZTI3NWIyIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.Ts8gtj3K24DbRAMq8ac7b9hlVtjZZiH_CABBBrsEHsI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"hello\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/33/comments/new/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"33",
+								"comments",
+								"new",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

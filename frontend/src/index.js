@@ -14,16 +14,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 );
-// Load Google Maps API script
-const loadScript = (url, callback) => {
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = url;
-  script.onload = callback;
-  document.head.appendChild(script);
-};
-
-loadScript(
-  `https://maps.googleapis.com/maps/api/js?key=AIzaSyC2ArtF9wrYS8TTs7bDUebm1yxx5OrY1W8&libraries=places`,
-  () => console.log("Google Maps API loaded")
-);
