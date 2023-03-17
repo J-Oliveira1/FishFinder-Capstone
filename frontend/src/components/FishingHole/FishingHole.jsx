@@ -1,8 +1,11 @@
 
 
-const FishingHole = ({ fishingHole, onClick }) => {
+const FishingHole = ({ fishingHole, }) => {
   return (
-    <div onClick={() => onClick(fishingHole)}>
+
+    <div>
+
+    
       <h3>Username:  {fishingHole.username}</h3>
       <p>Address:  {fishingHole.address}</p>
       <p>Latitude:  {fishingHole.latitude}</p>

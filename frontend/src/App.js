@@ -1,6 +1,6 @@
 // General Imports
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
 
@@ -20,10 +20,9 @@ import useAuth from "./hooks/useAuth";
 import { useEffect, useState } from "react";
 import MapPage from "./components/MapPage/MapPage";
 
+import FishingHoleDetailPage from "./components/FishingHoleDetailPage/FishingHoleDetailPage";
+
 function App() {
-
-
-
 
 
   return (
@@ -41,7 +40,14 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/fishingholes" element={<MapPage />} />
+        <Route
+          path="/fishingholes"
+          element={<MapPage  />}
+        />
+        <Route
+          path="/fishingholes/:fishingHoleId"
+          element={<FishingHoleDetailPage />}
+        />
       </Routes>
       <Footer />
     </div>
@@ -49,3 +55,30 @@ function App() {
 }
 
 export default App;
+
+// function App() {
+
+//   return (
+//     <div>
+//       <Navbar />
+//       <Routes>
+//         <Route
+//           path="/"
+//           element={
+//             <PrivateRoute>
+//               <HomePage />
+//             </PrivateRoute>
+//           }
+//         />
+//         <Route path="/register" element={<RegisterPage />} />
+//         <Route path="/login" element={<LoginPage />} />
+//         <Route path="/test" element={<Test />} />
+//         <Route path="/fishingholes" element={<MapPage />} />
+//         <Route path=`/fishingholes/${fishingHole.id}` element={<FishingHoleList />} />
+//       </Routes>
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// export default App;

@@ -3,11 +3,11 @@ import FishingHoleForm from '../FishingHoleForm/FishingHoleForm';
 import FishingHoleList from '../FishingHoleList/FishingHoleList';
 
 
-const MapPage = () => {
+const MapPage = ({  }) => {
   return (
     <div>
       <h1>List of Fishing Holes</h1>
-      <FishingHoleList />
+      <FishingHoleList  />
       <FishingHoleForm/>
       
     </div>
