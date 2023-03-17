@@ -7,12 +7,12 @@ const UpdateFishPost = ({
   setFishPosts,
   fishingHoleId,
   fishPostId,
-  setFishPostToUpdate,
 }) => {
   const { config, user } = useAuth();
   const [updatedFishingPost, setUpdatedFishingPost] = useState(fishPost);
   const [formData, setFormData] = useState({ image: null, type: "", size: "" });
   const [previewImageUrl, setPreviewImageUrl] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     setUpdatedFishingPost(fishPost);
@@ -42,46 +42,72 @@ const UpdateFishPost = ({
       alert(`Error: ${error.message}`);
     }
   };
-
+  
   function handleSubmit(event) {
     event.preventDefault();
     const form_data = new FormData();
     form_data.append("photo", formData.image, formData.image.name);
     form_data.append("type", updatedFishingPost.type);
     form_data.append("size", updatedFishingPost.size);
-    updateFishingPost(form_data);
+    updateFishingPost(form_data)
+      .then(() => {
+        // reset form data and preview image url
+        setFormData({ image: null, type: "", size: "" });
+        setPreviewImageUrl(null);
+        // close the form
+        setVisible(false);
+      })
+      .catch((error) => {
+        alert(`Error: ${error.message}`);
+      });
   }
-  function handleCancel() {
-    setFishPostToUpdate(null);
-  }
-
+  
+  
+  
   const handleImageChange = (e) => {
     const selectedFile = e.target.files[0];
     setFormData({ ...formData, image: selectedFile });
-
+    
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
     reader.onloadend = () => {
       setPreviewImageUrl(reader.result);
     };
+    
+  }
+  function handleCancel() {
+    setVisible(false);
+  }
+  
+  function handleUpdate() {
+    setVisible(true);
+
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Update Fish Post</h3>
-      <label>
-        Type of Fish:
-        <input
-          type="text"
-          name="type"
-          value={updatedFishingPost.type}
-          onChange={(e) =>
-            setUpdatedFishingPost({
-              ...updatedFishingPost,
-              type: e.target.value,
-            })
-          }
-        />
-      </label>
+    <div>
+      {!visible && (
+        <div>
+
+          <button type="button" onClick={handleUpdate}>Update</button>
+        </div>
+      )}
+      {visible && (
+        <form onSubmit={handleSubmit}>
+          <h3>Update Fish Post</h3>
+          <label>
+            Type of Fish:
+            <input
+              type="text"
+              name="type"
+              value={updatedFishingPost.type}
+              onChange={(e) =>
+                setUpdatedFishingPost({
+                  ...updatedFishingPost,
+                  type: e.target.value,
+                })
+              }
+            />
+          </label>
       <label>
         Size of Fish:
         <input
@@ -94,7 +120,7 @@ const UpdateFishPost = ({
               size: e.target.value,
             })
           }
-        />
+          />
       </label>
       <label>
         Photo:
@@ -114,6 +140,7 @@ const UpdateFishPost = ({
         Cancel
       </button>
     </form>
+        )}  </div>
   );
 };
 

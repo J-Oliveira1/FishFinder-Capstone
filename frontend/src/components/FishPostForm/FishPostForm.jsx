@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const FishPostForm = ({ fishingHoleId }) => {
+const FishPostForm = ({ fishingHoleId, setFishPosts }) => {
+  const [numPosts, setNumPosts] = useState(0);
   const { config } = useAuth();
   const [formData, setFormData] = useState({
     image: null,
@@ -35,6 +36,9 @@ const FishPostForm = ({ fishingHoleId }) => {
       })
       .then((res) => {
         console.log(res.data);
+        setFishPosts((prevFishPosts) => [...prevFishPosts, res.data]);
+        setNumPosts(numPosts + 1); 
+        setFormData({ image: null, type: "", size: "" }); 
       })
       .catch((err) => console.log(err));
   };
@@ -79,3 +83,6 @@ const FishPostForm = ({ fishingHoleId }) => {
 };
 
 export default FishPostForm;
+
+
+

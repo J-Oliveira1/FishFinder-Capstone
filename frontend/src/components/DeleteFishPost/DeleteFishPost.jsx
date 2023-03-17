@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 
 const DeleteFishPost = ({ id, ondelete, fishingHoleId }) => {
   const { config } = useAuth();
+  
   const deleteFishPost = async () => {
     try {
       await axios.delete(
@@ -16,8 +17,8 @@ const DeleteFishPost = ({ id, ondelete, fishingHoleId }) => {
       );
       ondelete(id);
     } catch (error) {}
-    
   };
+  
   return <button onClick={deleteFishPost}>Delete</button>;
 };
 

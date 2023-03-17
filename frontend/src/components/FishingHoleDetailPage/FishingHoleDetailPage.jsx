@@ -1,20 +1,42 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import DeleteFishPost from "../DeleteFishPost/DeleteFishPost";
+import axios from "axios";
 import FishPost from "../FishPost/FishPost";
 import FishPostForm from "../FishPostForm/FishPostForm";
-import UpdateFishPost from "../UpdateFishPost/UpdateFishPost";
+import useAuth from "../../hooks/useAuth";
 
-const FishingHoleDetailPage = ({ fishPost, }) => {
-  const [fishPostToUpdate, setFishPostToUpdate] = useState(null);
+const FishingHoleDetailPage = ({  }) => {
+    const { config } = useAuth();
   const { fishingHoleId } = useParams();
-  const [fishingHole, setFishingHole] = useState([]);
   const [fishPosts, setFishPosts] = useState([]);
-  
+  const [biggestFishPost, setBiggestFishPost] = useState(null);
+  const [userFishPost, setUserFishPost] = useState(null);
+  const [numPosts, setNumPosts] = useState(0);
+
   useEffect(() => {
     fetchFishPosts(fishingHoleId);
-  }, [fishingHoleId]);
+  }, [fishingHoleId, numPosts]);
+
+  useEffect(() => {
+    if (fishPosts.length > 0) {
+      const biggestFishPost = fishPosts.reduce((prev, current) => {
+        return prev.size > current.size ? prev : current;
+      });
+      setBiggestFishPost(biggestFishPost);
+    }
+  }, [fishPosts]);
+
+  useEffect(() => {
+    if (
+      userFishPost &&
+      biggestFishPost &&
+      userFishPost.size > biggestFishPost.size
+    ) {
+      alert("Congratulations! You caught the biggest fish!");
+    }
+  }, [userFishPost, biggestFishPost]);
+
+
 
   const fetchFishPosts = async () => {
     try {
@@ -23,41 +45,41 @@ const FishingHoleDetailPage = ({ fishPost, }) => {
           `http://127.0.0.1:8000/api/fishing_holes/${fishingHoleId}/fish_posts/`
         );
         setFishPosts(response.data);
-
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-
-
+  const handleNewPost = () => {
+    setNumPosts(numPosts + 1);
+  };
 
   return (
     <div>
-
-        <FishPostForm fishingHoleId={fishingHoleId}  />
-        <h3>Fish Posts</h3>
+      <p>Fishing Hole: {fishingHoleId}</p>
+      <FishPostForm
+        fishingHoleId={fishingHoleId}
+        setFishPosts={setFishPosts}
+        handleNewPost={handleNewPost}
+      />
+      {biggestFishPost && (
+        <div>
+          <h2>Biggest Fish!</h2>
+          <h4>Username: {biggestFishPost?.username}</h4>
+          <p>Type of Fish: {biggestFishPost?.type}</p>
+          <p>Size of Fish: {biggestFishPost?.size}</p>
+        </div>
+      )}
+      <h3>Fish Posts</h3>
       {fishPosts.map((fishPost) => (
-          <div >
-          <FishPost   key={fishPost.id} fishPost={fishPost} />
-
-          <DeleteFishPost
-            id={fishPost.id}
-            onDelete={() => fetchFishPosts(fishingHoleId)}
-            fishingHoleId={fishingHoleId}
-          />
-          <UpdateFishPost
+        <div key={fishPost.id}>
+          <FishPost
             fishPost={fishPost}
-            fishPostId={fishPost.id}
             fishingHoleId={fishingHoleId}
-            setFishPostToUpdate={setFishPostToUpdate}
             setFishPosts={setFishPosts}
           />
-            <br/>
-            <br/>
         </div>
-        
       ))}
     </div>
   );
