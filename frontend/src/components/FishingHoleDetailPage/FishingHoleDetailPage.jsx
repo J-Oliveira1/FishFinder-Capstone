@@ -4,9 +4,7 @@ import axios from "axios";
 import FishPost from "../FishPost/FishPost";
 import FishPostForm from "../FishPostForm/FishPostForm";
 
-
-const FishingHoleDetailPage = ({  }) => {
-
+const FishingHoleDetailPage = ({}) => {
   const { fishingHoleId } = useParams();
   const [fishPosts, setFishPosts] = useState([]);
   const [biggestFishPost, setBiggestFishPost] = useState(null);
@@ -26,15 +24,6 @@ const FishingHoleDetailPage = ({  }) => {
     }
   }, [fishPosts]);
 
-//   useEffect(() => {
-//     if (
-//       userFishPost &&
-//       biggestFishPost &&
-//       userFishPost.size > biggestFishPost.size
-//     ) {
-//       alert("Congratulations! You caught the biggest fish!");
-//     }
-//   }, [userFishPost, biggestFishPost]);
 
 
 

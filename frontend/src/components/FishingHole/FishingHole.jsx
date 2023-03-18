@@ -1,19 +1,29 @@
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
+const FishingHole = ({ fishingHole, fishingHoleId }) => {
+  const navigate = useNavigate();
+  const [selectedFishingHole, setSelectedFishingHole] = useState(null);
 
-const FishingHole = ({ fishingHole, }) => {
-  return (
+  function handleClick() {
+    setSelectedFishingHole(fishingHole);
+    navigate(`/fishingholes/${fishingHoleId}`);
+  }
 
-    <div>
-
-    
-      <h3>Username:  {fishingHole.username}</h3>
-      <p>Address:  {fishingHole.address}</p>
-      <p>Latitude:  {fishingHole.latitude}</p>
-      <p>Longitude:  {fishingHole.longitude}</p>
-      <p>Parking Available:  {fishingHole.parking}</p>
-      <p>Restroom Available:  {fishingHole.restroom}</p>
-    </div>
-  );
+  if (fishingHole) {
+    return (
+      <div onClick={handleClick}>
+        <h3>Username: {fishingHole.username}</h3>
+        <p>Fishing Hole ID: {fishingHoleId}</p>
+        <p>Address: {fishingHole.address}</p>
+        <p>Latitude: {fishingHole.latitude}</p>
+        <p>Longitude: {fishingHole.longitude}</p>
+        <p>Parking Available: {fishingHole.parking}</p>
+        <p>Restroom Available: {fishingHole.restroom}</p>
+      </div>
+    );
+  }
+  return null;
 };
 
 export default FishingHole;
