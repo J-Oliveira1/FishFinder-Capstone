@@ -16,6 +16,7 @@ const DeleteFishPost = ({ id, ondelete, fishingHoleId }) => {
         }
       );
       ondelete(id);
+      window.location.reload()
     } catch (error) {}
   };
   

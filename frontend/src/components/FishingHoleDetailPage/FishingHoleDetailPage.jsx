@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import FishPost from "../FishPost/FishPost";
 import FishPostForm from "../FishPostForm/FishPostForm";
-import useAuth from "../../hooks/useAuth";
+
 
 const FishingHoleDetailPage = ({  }) => {
-    const { config } = useAuth();
+
   const { fishingHoleId } = useParams();
   const [fishPosts, setFishPosts] = useState([]);
   const [biggestFishPost, setBiggestFishPost] = useState(null);
@@ -26,15 +26,15 @@ const FishingHoleDetailPage = ({  }) => {
     }
   }, [fishPosts]);
 
-  useEffect(() => {
-    if (
-      userFishPost &&
-      biggestFishPost &&
-      userFishPost.size > biggestFishPost.size
-    ) {
-      alert("Congratulations! You caught the biggest fish!");
-    }
-  }, [userFishPost, biggestFishPost]);
+//   useEffect(() => {
+//     if (
+//       userFishPost &&
+//       biggestFishPost &&
+//       userFishPost.size > biggestFishPost.size
+//     ) {
+//       alert("Congratulations! You caught the biggest fish!");
+//     }
+//   }, [userFishPost, biggestFishPost]);
 
 
 
@@ -62,6 +62,8 @@ const FishingHoleDetailPage = ({  }) => {
         fishingHoleId={fishingHoleId}
         setFishPosts={setFishPosts}
         handleNewPost={handleNewPost}
+        userFishPost={userFishPost}
+        biggestFishPost={biggestFishPost}
       />
       {biggestFishPost && (
         <div>
