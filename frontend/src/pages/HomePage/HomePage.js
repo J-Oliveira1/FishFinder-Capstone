@@ -1,17 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
-
 import axios from "axios";
-import GoogleMap from "../../components/GoogleMapDisplay/GoogleMapDisplay";
-import GoogleMapDisplay from "../../components/GoogleMapDisplay/GoogleMapDisplay";
+
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
-  const {user, token, config} = useAuth();
-  const [fishingSpots, setFishingSpots] = useState([]);
+  const { user, token, config } = useAuth();
+  const [fishingSpots, setFishingSpots] = useState();
 
   useEffect(() => {
     const fetchFishingSpots = async () => {
@@ -24,19 +22,24 @@ const HomePage = () => {
     };
     fetchFishingSpots();
   }, [token]);
-  return (
-    <div className="container">
-      <h1>Home Page for {user.username}!</h1>
 
-      {fishingSpots &&
-        fishingSpots.map((fishingSpot) => (
-          <p key={fishingSpot.id}>
-            {fishingSpot.id} {fishingSpot.address} {fishingSpot.restroom} {fishingSpot.parking}
-          </p>
-        ))}
-    </div>
 
-  );
+return (
+  <div className="container">
+    <h1>Home Page for {user.username}!</h1>
+    <h3>User Fishing Holes</h3>
+    <br/>
+
+    {fishingSpots &&
+      fishingSpots.map((fishingSpot) => (
+        <div key={fishingSpot.id}>
+          <p>Fishing Hole Id: {fishingSpot.id}</p>
+          <p>Address: {fishingSpot.address}</p>
+          <br/>
+          </div>
+      ))}
+  </div>
+);
 };
 
 export default HomePage;
