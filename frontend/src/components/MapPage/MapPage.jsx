@@ -1,16 +1,19 @@
 import FishingHoleList from "../FishingHoleList/FishingHoleList";
 import FishingHoleForm from "../FishingHoleForm/FishingHoleForm";
 import { useEffect, useState } from "react";
+
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
+  Autocomplete,
 } from "@react-google-maps/api";
 import "../MapPage/MapPage.css";
 import axios from "axios";
 
 const libraries = ["places"];
+
 const mapContainerStyle = {
   height: "400px",
   width: "100%",
@@ -18,16 +21,19 @@ const mapContainerStyle = {
 
 const MapPage = () => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAyEDYp5IvDtLToD8WzkDpC3-Mb4el8pR4",
+    googleMapsApiKey: "AIzaSyD_woPSa-F66mqP750H4zMbKUCBQ3m_GaA",
     libraries,
   });
   const [fishingHoles, setFishingHoles] = useState([]);
+  const [autocomplete, setAutocomplete] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [selectedPlace, setSelectedPlace] = useState(null);
   const [clickedLocation, setClickedLocation] = useState(null);
   const defaultMarkerIcon =
     "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
   const selectedMarkerIcon =
     "https://maps.google.com/mapfiles/kml/paddle/grn-circle.png";
+ 
 
   useEffect(() => {
     fetchFishingHoles();
@@ -40,6 +46,10 @@ const MapPage = () => {
       );
       setFishingHoles(response.data);
     } catch (error) {}
+  };
+
+  const handlePlaceSelect = (place) => {
+    setSelectedPlace(place);
   };
 
   const handleMapClick = async (event) => {
@@ -77,10 +87,30 @@ const MapPage = () => {
 
   return (
     <div>
+      <Autocomplete
+  onLoad={(autocomplete) => setAutocomplete(autocomplete)}
+  onPlaceChanged={() => {
+    const place = autocomplete.getPlace();
+    setSelectedPlace(place);
+  }}
+      >
+        <input
+          type="text"
+          placeholder="Search for a location..."
+          style={{ width: "100%" }}
+        />
+      </Autocomplete>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
-        center={{ lat: 35.743084, lng: -81.839766 }}
+        center={
+          selectedPlace
+            ? {
+                lat: selectedPlace.geometry.location.lat(),
+                lng: selectedPlace.geometry.location.lng(),
+              }
+            : { lat: 35.743084, lng: -81.839766 }
+        }
         onClick={handleMapClick}
       >
         {fishingHoles.map((fishingHole) => (
