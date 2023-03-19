@@ -1,7 +1,7 @@
 // General Imports
 
-import { Routes, Route, useParams } from "react-router-dom";
-import axios from "axios";
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
 
 // Pages Imports
@@ -15,16 +15,11 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import Test from "./components/Test/Test";
-import useAuth from "./hooks/useAuth";
-import { useEffect, useState } from "react";
 import MapPage from "./components/MapPage/MapPage";
 
 import FishingHoleDetailPage from "./components/FishingHoleDetailPage/FishingHoleDetailPage";
 
 function App() {
-
-
   return (
     <div>
       <Navbar />
@@ -39,11 +34,7 @@ function App() {
         />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/test" element={<Test />} />
-        <Route
-          path="/fishingholes"
-          element={<MapPage  />}
-        />
+        <Route path="/fishingholes" element={<MapPage />} />
         <Route
           path="/fishingholes/:fishingHoleId"
           element={<FishingHoleDetailPage />}

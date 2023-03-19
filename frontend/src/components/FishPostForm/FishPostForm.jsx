@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const FishPostForm = ({ fishingHoleId, setFishPosts, userFishPost, biggestFishPost }) => {
+const FishPostForm = ({
+  fishingHoleId,
+  setFishPosts,
+  biggestFishPost,
+}) => {
   const [numPosts, setNumPosts] = useState(0);
   const { config } = useAuth();
   const [formData, setFormData] = useState({
@@ -37,15 +41,13 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, userFishPost, biggestFishPo
       .then((res) => {
         console.log(res.data);
         setFishPosts((prevFishPosts) => [...prevFishPosts, res.data]);
-        setNumPosts(numPosts + 1); 
-        setFormData({ image: null, type: "", size: "" }); 
+        setNumPosts(numPosts + 1);
+        setFormData({ image: null, type: "", size: "" });
       })
       .catch((err) => console.log(err));
-      if (
-        formData.size > biggestFishPost.size
-      ) {
-        alert("Congratulations! You caught the biggest fish!");
-      }
+    if (formData.size > biggestFishPost.size) {
+      alert("Congratulations! You caught the biggest fish!");
+    }
   };
 
   return (
@@ -88,6 +90,3 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, userFishPost, biggestFishPo
 };
 
 export default FishPostForm;
-
-
-

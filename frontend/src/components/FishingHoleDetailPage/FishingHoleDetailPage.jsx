@@ -24,9 +24,6 @@ const FishingHoleDetailPage = ({}) => {
     }
   }, [fishPosts]);
 
-
-
-
   const fetchFishPosts = async () => {
     try {
       if (fishingHoleId) {

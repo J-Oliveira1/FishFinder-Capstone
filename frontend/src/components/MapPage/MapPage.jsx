@@ -1,10 +1,14 @@
 import FishingHoleList from "../FishingHoleList/FishingHoleList";
 import FishingHoleForm from "../FishingHoleForm/FishingHoleForm";
 import { useEffect, useState } from "react";
-import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 import "../MapPage/MapPage.css";
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -13,7 +17,6 @@ const mapContainerStyle = {
 };
 
 const MapPage = () => {
-  const { config } = useAuth();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyAyEDYp5IvDtLToD8WzkDpC3-Mb4el8pR4",
     libraries,
@@ -21,8 +24,10 @@ const MapPage = () => {
   const [fishingHoles, setFishingHoles] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [clickedLocation, setClickedLocation] = useState(null);
-  const defaultMarkerIcon = "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
-  const selectedMarkerIcon = "https://maps.google.com/mapfiles/kml/paddle/grn-circle.png";
+  const defaultMarkerIcon =
+    "https://maps.google.com/mapfiles/kml/paddle/red-circle.png";
+  const selectedMarkerIcon =
+    "https://maps.google.com/mapfiles/kml/paddle/grn-circle.png";
 
   useEffect(() => {
     fetchFishingHoles();
@@ -67,7 +72,6 @@ const MapPage = () => {
     setFishingHoles(updatedFishingHoles);
   };
 
-
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading maps";
 
@@ -79,51 +83,41 @@ const MapPage = () => {
         center={{ lat: 35.743084, lng: -81.839766 }}
         onClick={handleMapClick}
       >
-
         {fishingHoles.map((fishingHole) => (
           <Marker
             key={fishingHole.id}
             position={{ lat: fishingHole.latitude, lng: fishingHole.longitude }}
-            icon={selectedMarker === fishingHole ? selectedMarkerIcon : defaultMarkerIcon}
+            icon={
+              selectedMarker === fishingHole
+                ? selectedMarkerIcon
+                : defaultMarkerIcon
+            }
             onClick={() => highlightFishingHole(fishingHole.id)}
           >
             {selectedMarker === fishingHole && (
               <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
-                <div>User: {selectedMarker.username} Address: {selectedMarker.address}</div>
+                <div>
+                  User: {selectedMarker.username} Address:{" "}
+                  {selectedMarker.address}
+                </div>
               </InfoWindow>
             )}
           </Marker>
         ))}
       </GoogleMap>
       <h1>List of Fishing Holes</h1>
-      <FishingHoleList fetchFishingHoles={fetchFishingHoles} fishingHoles={fishingHoles} setFishingHoles={setFishingHoles} highlightFishingHole={highlightFishingHole}/>
+      <FishingHoleList
+        fetchFishingHoles={fetchFishingHoles}
+        fishingHoles={fishingHoles}
+        setFishingHoles={setFishingHoles}
+        highlightFishingHole={highlightFishingHole}
+      />
       <FishingHoleForm />
     </div>
   );
 };
 
 export default MapPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import FishingHoleForm from "../FishingHoleForm/FishingHoleForm";
 // import FishingHoleList from "../FishingHoleList/FishingHoleList";
@@ -197,7 +191,6 @@ export default MapPage;
 //   const handleMarkerClick = (marker) => {
 //     setSelectedMarker(marker);
 //   };
-
 
 //   if (loadError) return "Error loading maps";
 //   if (!isLoaded) return "Loading maps";

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 
-const FishPostList = (prop) => {
+
+const FishPostList = () => {
     return ( 
-        pass
+        null
      );
 }
  
