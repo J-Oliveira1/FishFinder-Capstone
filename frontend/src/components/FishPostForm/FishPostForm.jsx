@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-const FishPostForm = ({
-  fishingHoleId,
-  setFishPosts,
-  biggestFishPost,
-}) => {
+const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
   const [numPosts, setNumPosts] = useState(0);
-  const { config } = useAuth();
+  const { user, config } = useAuth();
   const [formData, setFormData] = useState({
     image: null,
     type: "",
@@ -53,38 +49,42 @@ const FishPostForm = ({
   return (
     <div>
       <h4>Add New Fish Post</h4>
-      <form onSubmit={handleSubmit}>
-        <p>
-          <input
-            type="text"
-            placeholder="Type of Fish"
-            id="type"
-            value={formData.type}
-            onChange={handleChange}
-            required
-          />
-        </p>
-        <p>
-          <input
-            type="text"
-            placeholder="Size of Fish"
-            id="size"
-            value={formData.size}
-            onChange={handleChange}
-            required
-          />
-        </p>
-        <p>
-          <input
-            type="file"
-            id="image"
-            accept="image/png, image/jpeg"
-            onChange={handleImageChange}
-            required
-          />
-        </p>
-        <input type="submit" />
-      </form>
+      {user ? (
+        <form onSubmit={handleSubmit}>
+          <p>
+            <input
+              type="text"
+              placeholder="Type of Fish"
+              id="type"
+              value={formData.type}
+              onChange={handleChange}
+              required
+            />
+          </p>
+          <p>
+            <input
+              type="text"
+              placeholder="Size of Fish"
+              id="size"
+              value={formData.size}
+              onChange={handleChange}
+              required
+            />
+          </p>
+          <p>
+            <input
+              type="file"
+              id="image"
+              accept="image/png, image/jpeg"
+              onChange={handleImageChange}
+              required
+            />
+          </p>
+          <input type="submit" />
+        </form>
+      ) : (
+        <p>Please log in to add a new fish post.</p>
+      )}
     </div>
   );
 };

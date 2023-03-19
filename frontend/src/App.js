@@ -47,29 +47,3 @@ function App() {
 
 export default App;
 
-// function App() {
-
-//   return (
-//     <div>
-//       <Navbar />
-//       <Routes>
-//         <Route
-//           path="/"
-//           element={
-//             <PrivateRoute>
-//               <HomePage />
-//             </PrivateRoute>
-//           }
-//         />
-//         <Route path="/register" element={<RegisterPage />} />
-//         <Route path="/login" element={<LoginPage />} />
-//         <Route path="/test" element={<Test />} />
-//         <Route path="/fishingholes" element={<MapPage />} />
-//         <Route path=`/fishingholes/${fishingHole.id}` element={<FishingHoleList />} />
-//       </Routes>
-//       <Footer />
-//     </div>
-//   );
-// }
-
-// export default App;

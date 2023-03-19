@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Comment from "../Comment/Comment";
 import axios from "axios";
 
-const CommentList = ({  fishingHoleId }) => {
+const CommentList = ({ fishingHoleId }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -16,17 +16,16 @@ const CommentList = ({  fishingHoleId }) => {
       );
       setComments(response.data);
     } catch (error) {}
-
   };
 
   return (
     <div>
-        <h3>Fishing Hole Comments:</h3>
-        {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
-        ))}
+      <h3>Fishing Hole Comments:</h3>
+      {comments.map((comment) => (
+        <Comment key={comment.id} comment={comment} />
+      ))}
     </div>
-);
+  );
 };
 
 export default CommentList;
