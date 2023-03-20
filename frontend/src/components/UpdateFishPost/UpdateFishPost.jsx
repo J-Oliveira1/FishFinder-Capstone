@@ -35,7 +35,7 @@ const UpdateFishPost = ({
           config
         );
         if (getResponse.status === 200) {
-          // Update the state with the new data
+          
           console.log(response);
           setFishPosts(getResponse.data);
           setUpdatedFishingPost(null);
@@ -54,10 +54,10 @@ const UpdateFishPost = ({
     form_data.append("size", updatedFishingPost.size);
     updateFishingPost(form_data)
       .then(() => {
-        // reset form data and preview image url
+        
         setFormData({ image: null, type: "", size: "" });
         setPreviewImageUrl(null);
-        // close the form
+        
         setVisible(false);
       })
       .catch((error) => {
