@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import "../FishingHoleForm/FishingHoleForm.css";
 
 const FishingHoleForm = () => {
   const { config } = useAuth();
@@ -42,60 +43,62 @@ const FishingHoleForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Add New Fishing Hole</h3>
-      <label>
-        Address:
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Latitude:
-        <input
-          type="text"
-          name="latitude"
-          value={formData.latitude}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Longitude:
-        <input
-          type="text"
-          name="longitude"
-          value={formData.longitude}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Parking:
-        <input
-          type="text"
-          name="parking"
-          value={formData.parking}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <label>
-        Restroom:
-        <input
-          type="text"
-          name="restroom"
-          value={formData.restroom}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <button type="submit">Add Fishing Hole</button>
-    </form>
+    <div>
+      <h4 className="border-1">Add New Fishing Hole</h4>
+      <form onSubmit={handleSubmit} className="fishing-hole-form">
+        <label>
+          Address:
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Latitude:
+          <input
+            type="text"
+            name="latitude"
+            value={formData.latitude}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Longitude:
+          <input
+            type="text"
+            name="longitude"
+            value={formData.longitude}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Parking:
+          <input
+            type="text"
+            name="parking"
+            value={formData.parking}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Restroom:
+          <input
+            type="text"
+            name="restroom"
+            value={formData.restroom}
+            onChange={handleChange}
+          />
+        </label>
+
+        <button type="submit">Add Fishing Hole</button>
+      </form>
+    </div>
   );
 };
 

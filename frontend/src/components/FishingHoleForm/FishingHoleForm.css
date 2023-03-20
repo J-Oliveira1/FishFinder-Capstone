@@ -1,0 +1,31 @@
+.fishing-hole-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+.fishing-hole-form label {
+    flex-basis: calc(33.33% - 10px);
+    margin-bottom: 10px;
+}
+
+.fishing-hole-form input {
+    width: 100%;
+}
+
+.border-1 {
+    border-bottom: black solid 3px;
+    width: 25%;
+    padding-top: 10px;
+}
+
+.fishing-hole-form button  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 100;
+    font-size: 16px;
+    cursor: pointer;
+
+}

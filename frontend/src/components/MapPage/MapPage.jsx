@@ -99,7 +99,7 @@ const MapPage = () => {
           style={{ width: "100%", textAlign: "center" }}
         />
       </Autocomplete>
-      <GoogleMap
+      <GoogleMap 
         mapContainerStyle={mapContainerStyle}
         zoom={12}
         center={
@@ -134,6 +134,7 @@ const MapPage = () => {
           </Marker>
         ))}
       </GoogleMap>
+      <FishingHoleForm/>
       <h2 class="border-two" >List of Fishing Holes</h2>
       <FishingHoleList 
         fetchFishingHoles={fetchFishingHoles}
@@ -141,7 +142,6 @@ const MapPage = () => {
         setFishingHoles={setFishingHoles}
         highlightFishingHole={highlightFishingHole}
       />
-      <FishingHoleForm />
     </div>
   );
 };

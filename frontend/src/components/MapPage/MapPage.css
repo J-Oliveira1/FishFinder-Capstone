@@ -1,6 +1,7 @@
 .map-container {
     width: 100%;
     height: 100vh;
+    
 }
 
 .border-two {
@@ -8,4 +9,8 @@
     width: 25%;
     padding-bottom: 15px;
     padding-top: 15px;
+}
+
+.map-space {
+    padding-top: 10px;
 }
