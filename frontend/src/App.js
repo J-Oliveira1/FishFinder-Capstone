@@ -18,6 +18,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import MapPage from "./components/MapPage/MapPage";
 
 import FishingHoleDetailPage from "./components/FishingHoleDetailPage/FishingHoleDetailPage";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/fishingholes" element={<MapPage />} />
+        <Route path="/about" element={<AboutUs/>}  />
         <Route
           path="/fishingholes/:fishingHoleId"
           element={<FishingHoleDetailPage />}

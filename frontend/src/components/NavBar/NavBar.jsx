@@ -60,7 +60,7 @@ const Navigation = () => {
   const navigate = useNavigate();
 
   return (
-    <Navbar bg="success" variant="light" className="justify-content-between">
+    <Navbar fixed="top" bg="success" variant="light" className="justify-content-between">
       <Container>
         <Navbar.Brand style={{ fontSize: "2rem", marginRight: "5rem" }}>FishFinder</Navbar.Brand>
         <Nav className="me-auto">

@@ -26,7 +26,7 @@ const HomePage = () => {
   }, [token, user.username]);
 
   return (
-    <div className="container">
+    <div className="container padding">
       <h1>Home Page for {user.username}!</h1>
       <h3>User Fishing Holes</h3>
       <br />

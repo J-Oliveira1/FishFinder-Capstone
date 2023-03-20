@@ -19,7 +19,7 @@ const LoginPage = () => {
   }, [isServerError]);
 
   return (
-    <div className="container">
+    <div className="container padding" >
       <form className="form" onSubmit={handleSubmit}>
         <label>
           Username:{" "}
@@ -42,7 +42,7 @@ const LoginPage = () => {
         {isServerError ? (
           <p className="error">Login failed, incorrect credentials!</p>
         ) : null}
-        <Link to="/register">Click to register!</Link>
+        <Link className="link-btn" to="/register">Click to register!</Link>
         <button>Login!</button>
       </form>
     </div>
