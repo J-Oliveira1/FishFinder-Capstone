@@ -135,7 +135,7 @@ const MapPage = () => {
         ))}
       </GoogleMap>
       <FishingHoleForm/>
-      <h2 class="border-two" >List of Fishing Holes</h2>
+      <h2 className="border-two" >List of Fishing Holes</h2>
       <FishingHoleList 
         fetchFishingHoles={fetchFishingHoles}
         fishingHoles={fishingHoles}

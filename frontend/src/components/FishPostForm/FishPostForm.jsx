@@ -48,10 +48,10 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
 
   return (
     <div>
-      <h4>Add New Fish Post</h4>
+      <h4 className="border-1">Add New Fish Post</h4>
       {user ? (
-        <form onSubmit={handleSubmit}>
-          <p>
+        <form onSubmit={handleSubmit} className="fish-post-form">
+          <label>
             <input
               type="text"
               placeholder="Type of Fish"
@@ -60,8 +60,8 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
               onChange={handleChange}
               required
             />
-          </p>
-          <p>
+          </label>
+          <label>
             <input
               type="text"
               placeholder="Size of Fish"
@@ -70,8 +70,8 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
               onChange={handleChange}
               required
             />
-          </p>
-          <p>
+          </label>
+          <label>
             <input
               type="file"
               id="image"
@@ -79,8 +79,8 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
               onChange={handleImageChange}
               required
             />
-          </p>
-          <input type="submit" />
+          </label>
+          <button type="submit">Add</button>
         </form>
       ) : (
         <p>Please log in to add a new fish post.</p>

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import FishPost from "../FishPost/FishPost";
 import FishPostForm from "../FishPostForm/FishPostForm";
+import "../FishingHoleDetailPage/FishingHoleDetailPage.css"
 
 const FishingHoleDetailPage = ({}) => {
   const { fishingHoleId } = useParams();
@@ -42,8 +43,8 @@ const FishingHoleDetailPage = ({}) => {
   };
 
   return (
-    <div>
-      <p>Fishing Hole: {fishingHoleId}</p>
+    <div className="padding">
+      <h3 className="">Fishing Hole: {fishingHoleId}</h3>
       <FishPostForm
         fishingHoleId={fishingHoleId}
         setFishPosts={setFishPosts}
@@ -51,17 +52,20 @@ const FishingHoleDetailPage = ({}) => {
         userFishPost={userFishPost}
         biggestFishPost={biggestFishPost}
       />
+      <div >
+
       {biggestFishPost && (
-        <div>
-          <h2>Biggest Fish!</h2>
+        <div className="winner">
+          <h3>Biggest Fish!</h3>
           <h4>Username: {biggestFishPost?.username}</h4>
           <p>Type of Fish: {biggestFishPost?.type}</p>
-          <p>Size of Fish: {biggestFishPost?.size}</p>
+          <p>Size of Fish: {biggestFishPost?.size} LBS</p>
         </div>
       )}
-      <h3>Fish Posts</h3>
+      </div>
+      <h3 className="border-1">Fish Posts</h3>
       {fishPosts.map((fishPost) => (
-        <div key={fishPost.id}>
+        <div key={fishPost.id} >
           <FishPost
             fishPost={fishPost}
             fishingHoleId={fishingHoleId}

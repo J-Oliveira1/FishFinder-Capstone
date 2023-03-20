@@ -1,0 +1,21 @@
+.winner {
+    border: dashed 2px #00b300;
+    padding: 5px;
+    margin: 5px;
+    max-width: 400px;
+  }
+
+  .fish-posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    padding: 10px;
+    margin: 5px 0; 
+  }
+
+  .card-1 {
+    border: 2px solid black;
+    padding: 10px;
+    margin: 5px;
+  }
