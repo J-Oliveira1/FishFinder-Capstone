@@ -85,7 +85,7 @@ const MapPage = () => {
   if (!isLoaded) return "Loading maps";
 
   return (
-    <div>
+    <div className="padding " >
       <Autocomplete
         onLoad={(autocomplete) => setAutocomplete(autocomplete)}
         onPlaceChanged={() => {
@@ -96,7 +96,7 @@ const MapPage = () => {
         <input
           type="text"
           placeholder="Search for a location..."
-          style={{ width: "100%" }}
+          style={{ width: "100%", textAlign: "center" }}
         />
       </Autocomplete>
       <GoogleMap
@@ -123,7 +123,7 @@ const MapPage = () => {
             }
             onClick={() => highlightFishingHole(fishingHole.id)}
           >
-            {selectedMarker === fishingHole && (
+            {selectedMarker === fishingHole.id && (
               <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
                 <div>
                   User: {selectedMarker.username} Address:{" "}
@@ -134,8 +134,8 @@ const MapPage = () => {
           </Marker>
         ))}
       </GoogleMap>
-      <h1>List of Fishing Holes</h1>
-      <FishingHoleList
+      <h2 class="border-two" >List of Fishing Holes</h2>
+      <FishingHoleList 
         fetchFishingHoles={fetchFishingHoles}
         fishingHoles={fishingHoles}
         setFishingHoles={setFishingHoles}

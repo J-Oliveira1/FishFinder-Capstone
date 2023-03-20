@@ -10,30 +10,33 @@ const FishingHoleList = ({ fetchFishingHoles, fishingHoles }) => {
   const [fishingHoleToUpdate, setFishingHoleToUpdate] = useState(null);
 
   return (
-    <div>
+    <div className="fishing-card " >
       {fishingHoles.map((fishingHole) => (
         <div
           key={fishingHole.id}
-          className={fishingHole.selected ? "selected-fishing-hole" : ""}
+          className={fishingHole.selected ? "selected-fishing-hole" : "fishing-hole" }
         >
           <div>
-            <FishingHole
+            <FishingHole 
               fishingHole={fishingHole}
               fishingHoleId={fishingHole.id}
             />
           </div>
+          <div className="buttons" >
+
           {fishingHoleToUpdate && (
             <UpdateFishingHole
-              fishingHole={fishingHoleToUpdate}
-              setFishingHoleToUpdate={setFishingHoleToUpdate}
-              onupdate={fetchFishingHoles}
+            fishingHole={fishingHoleToUpdate}
+            setFishingHoleToUpdate={setFishingHoleToUpdate}
+            onupdate={fetchFishingHoles}
             />
-          )}
+            )}
           <DeleteFishingHole id={fishingHole.id} ondelete={fetchFishingHoles} />
           <button onClick={() => setFishingHoleToUpdate(fishingHole)}>
             Update
           </button>
-          <CommentForm fishingHoleId={fishingHole.id} />
+            </div>
+          <CommentForm fishingHoleId={fishingHole.id} className="comment-form" />
           <CommentList fishingHoleId={fishingHole.id} />
         </div>
       ))}

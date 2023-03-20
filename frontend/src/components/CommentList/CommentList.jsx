@@ -19,8 +19,8 @@ const CommentList = ({ fishingHoleId }) => {
   };
 
   return (
-    <div>
-      <h3>Fishing Hole Comments:</h3>
+    <div className="comment-2" >
+      <h4>Fishing Hole Comments:</h4>
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}

@@ -33,18 +33,20 @@ const CommentForm = ({ fishingHoleId }) => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Add New Comment</h3>
-      <label>
+    <form onSubmit={handleSubmit} className="comment-1" >
+      <h5>Add New Comment</h5>
+      <div className="comment-form">
+      <label >
         Comment:
         <input
           type="text"
           name="text"
           value={formData.text}
           onChange={handleChange}
-        />
+          />
       </label>
-      <button type="submit">Add Comment</button>
+      <button type="submit">Add</button>
+          </div>
     </form>
   );
 };

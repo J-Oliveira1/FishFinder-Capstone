@@ -1,7 +1,7 @@
 const Comment = ({ comment }) => {
   return (
     <div>
-      <h3>Username: {comment.username}</h3>
+      <h5>Username: {comment.username}</h5>
       <p>Comment: {comment.text}</p>
     </div>
   );

@@ -12,8 +12,8 @@ const FishingHole = ({ fishingHole, fishingHoleId }) => {
 
   if (fishingHole) {
     return (
-      <div onClick={handleClick}>
-        <h3>Username: {fishingHole.username}</h3>
+      <div onClick={handleClick} >
+        <h4>Username: {fishingHole.username}</h4>
         <p>Fishing Hole ID: {fishingHoleId}</p>
         <p>Address: {fishingHole.address}</p>
         <p>Latitude: {fishingHole.latitude}</p>
