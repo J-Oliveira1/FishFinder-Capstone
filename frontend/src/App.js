@@ -36,16 +36,14 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/fishingholes" element={<MapPage />} />
-        <Route path="/about" element={<AboutUs/>}  />
+        <Route path="/about" element={<AboutUs />} />
         <Route
           path="/fishingholes/:fishingHoleId"
           element={<FishingHoleDetailPage />}
         />
       </Routes>
-      <Footer />
     </div>
   );
 }
 
 export default App;
-
