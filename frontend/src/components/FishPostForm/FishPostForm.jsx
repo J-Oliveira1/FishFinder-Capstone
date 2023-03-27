@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import "../FishPostForm/FishPostForm.css"
 
 const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
   const [numPosts, setNumPosts] = useState(0);
@@ -48,9 +49,9 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
 
   return (
     <div>
-      <h4 className="border-1">Add New Fish Post</h4>
+      <h4 className="border-1 ">Add New Fish Post</h4>
       {user ? (
-        <form onSubmit={handleSubmit} className="fish-post-form">
+        <form onSubmit={handleSubmit} className="fish-post-form spacing">
           <label>
             <input
               type="text"
@@ -61,6 +62,7 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
               required
             />
           </label>
+          <br/>
           <label>
             <input
               type="text"
@@ -71,6 +73,7 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
               required
             />
           </label>
+          <br/>
           <label>
             <input
               type="file"

@@ -24,7 +24,7 @@ const FishPost = ({
         <img
         src={`http://127.0.0.1:8000/${fishPost.photo}`}
         alt="Fish post photo"
-        style={{ maxWidth: 300 }}
+        style={{ maxWidth: 300, maxHeight: 300 }}
         />
         )}
         <div className="buttons"> 

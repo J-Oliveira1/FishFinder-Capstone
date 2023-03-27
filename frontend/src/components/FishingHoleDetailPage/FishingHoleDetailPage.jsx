@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import FishPost from "../FishPost/FishPost";
 import FishPostForm from "../FishPostForm/FishPostForm";
-import "../FishingHoleDetailPage/FishingHoleDetailPage.css"
+import "../FishingHoleDetailPage/FishingHoleDetailPage.css";
 
 const FishingHoleDetailPage = ({}) => {
   const { fishingHoleId } = useParams();
@@ -45,34 +45,42 @@ const FishingHoleDetailPage = ({}) => {
   return (
     <div className="padding">
       <h3 className="">Fishing Hole: {fishingHoleId}</h3>
-      <FishPostForm
-        fishingHoleId={fishingHoleId}
-        setFishPosts={setFishPosts}
-        handleNewPost={handleNewPost}
-        userFishPost={userFishPost}
-        biggestFishPost={biggestFishPost}
-      />
-      <div >
-
-      {biggestFishPost && (
-        <div className="winner">
-          <h3>Biggest Fish!</h3>
-          <h4>Username: {biggestFishPost?.username}</h4>
-          <p>Type of Fish: {biggestFishPost?.type}</p>
-          <p>Size of Fish: {biggestFishPost?.size} LBS</p>
-        </div>
-      )}
-      </div>
-      <h3 className="border-1">Fish Posts</h3>
-      {fishPosts.map((fishPost) => (
-        <div key={fishPost.id} >
-          <FishPost
-            fishPost={fishPost}
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{ flex: "1", marginRight: "20px" }}>
+          <FishPostForm
             fishingHoleId={fishingHoleId}
             setFishPosts={setFishPosts}
+            handleNewPost={handleNewPost}
+            userFishPost={userFishPost}
+            biggestFishPost={biggestFishPost}
           />
+          <div>
+            {biggestFishPost && (
+              <div className="winner">
+                <h3>Biggest Fish!</h3>
+                <h4>Username: {biggestFishPost?.username}</h4>
+                <p>Type of Fish: {biggestFishPost?.type}</p>
+                <p>Size of Fish: {biggestFishPost?.size} LBS</p>
+              </div>
+            )}
+          </div>
         </div>
-      ))}
+        <div style={{ flex: "1" }}>
+          <h3 className="border-1">Fish Posts</h3>
+          <div className="fish-posts">
+            {fishPosts.map((fishPost) => (
+              <div key={fishPost.id} className="card-1">
+                <FishPost
+                  fishPost={fishPost}
+                  fishingHoleId={fishingHoleId}
+                  setFishPosts={setFishPosts}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div style={{ marginBottom: "50px" }}></div>
     </div>
   );
 };
