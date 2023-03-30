@@ -23,7 +23,7 @@ urlpatterns = [
     path('api/auth/', include('authentication.urls')),
     path('api/cars/', include('cars.urls')),
     path('api/fishing_holes/', include('fishing_holes.urls')),
-    # path('api/fish_posts/', include('fish_posts.urls'))
+    
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

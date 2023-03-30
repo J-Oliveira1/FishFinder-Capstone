@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'fish_posts',
     'fishing_holes',
     'comments',
+    'reviews',
 ]
 
 MIDDLEWARE = [

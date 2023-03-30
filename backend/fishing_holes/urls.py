@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:fishing_holes_id>/delete/', views.delete_fishing_holes),
     path('<int:fishing_hole_id>/fish_posts/', include('fish_posts.urls')),
     path('<int:fishing_hole_id>/comments/', include('comments.urls')),
+    path('<int:fishing_hole_id>/reviews/', include('reviews.urls')),
 ]

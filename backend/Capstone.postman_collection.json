@@ -428,7 +428,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5MDkyNzc2LCJpYXQiOjE2NzgyMjg3NzYsImp0aSI6ImY3NmUwZjg2NjIyZTQ3ZTJhYjU0MDQzZTQ3YzBiZmZkIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.UvFd0zuui1pUgGSsv-qd3O3byeXPPTfi-5eKGbBjFDI",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc5ODQ2NDgxLCJpYXQiOjE2Nzg5ODI0ODEsImp0aSI6ImI2NmQ0MTU3MzhkYzRiM2RhNzllNjk3YTY5ZTI3NWIyIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJqb2VmaXNoZXMiLCJmaXJzdF9uYW1lIjoiSm9lIn0.Ts8gtj3K24DbRAMq8ac7b9hlVtjZZiH_CABBBrsEHsI",
 								"type": "text"
 							}
 						],
@@ -634,6 +634,79 @@
 								"fishing_holes",
 								"33",
 								"comments",
+								"new",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "Get_All_Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/33/reviews/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"33",
+								"reviews",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjgxMDczNTIxLCJpYXQiOjE2ODAyMDk1MjEsImp0aSI6ImFhMTNmNjEyMjM1MTQxZWNiM2I2MmM1MTYyN2Y5NDBhIiwidXNlcl9pZCI6NCwidXNlcm5hbWUiOiJKb2VGaXNoZXM5MCIsImZpcnN0X25hbWUiOiJKb2UifQ.b541eDFkSO6l8T0gfXkLF9YJEOXVUDySPtKkbJYj920",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"Review Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/fishing_holes/64/reviews/new/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"fishing_holes",
+								"64",
+								"reviews",
 								"new",
 								""
 							]
