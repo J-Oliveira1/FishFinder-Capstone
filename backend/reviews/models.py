@@ -7,3 +7,4 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     fishing_hole = models.ForeignKey(FishingHole, on_delete=models.CASCADE)
     text = models.CharField(max_length=225)
+    rating= models.IntegerField(default=0)

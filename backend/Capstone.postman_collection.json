@@ -685,7 +685,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"Review Test\"\r\n}",
+							"raw": "{\r\n    \"text\": \"Review Test\",\r\n    \"rating\":\"0\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
