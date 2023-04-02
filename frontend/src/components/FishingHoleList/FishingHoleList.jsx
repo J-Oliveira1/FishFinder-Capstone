@@ -5,7 +5,8 @@ import UpdateFishingHole from "../UpdateFishingHole/UpdateFishingHole";
 import CommentList from "../CommentList/CommentList";
 import CommentForm from "../CommentForm/CommentForm";
 import "../FishingHoleList/FishingHoleList.css";
-import ReviewList from "../ReviewList/Review";
+import ReviewList from "../ReviewList/ReviewList";
+import ReviewForm from "../ReviewForm/ReviewForm";
 
 const FishingHoleList = ({ fetchFishingHoles, fishingHoles }) => {
   const [fishingHoleToUpdate, setFishingHoleToUpdate] = useState(null);
@@ -39,6 +40,7 @@ const FishingHoleList = ({ fetchFishingHoles, fishingHoles }) => {
             </div>
           <CommentForm fishingHoleId={fishingHole.id} className="comment-form" />
           <CommentList fishingHoleId={fishingHole.id} />
+          <ReviewForm fishingHoleId={fishingHole.id} />
           <ReviewList fishingHoleId={fishingHole.id}/>  
         </div>
       ))}
