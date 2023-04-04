@@ -1,0 +1,21 @@
+.star-rating {
+    margin: 10px 0;
+}
+
+.star-rating ul {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.star-rating li {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 20px;
+}
+
+.star-rating i {
+    color: green; 
+}
