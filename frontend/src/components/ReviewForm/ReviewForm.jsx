@@ -43,17 +43,7 @@ const ReviewForm = ({ fishingHoleId }) => {
   return (
     <form onSubmit={handleSubmit} className="comment-1">
       <h5>Leave A Review</h5>
-      <div className="comment-form">
-        <label>
-          Review:
-          <input
-            type="text"
-            name="text"
-            value={formData.text}
-            onChange={handlechange}
-          />
-        </label>
-        <div className="star-rating">
+      <div className="star-rating">
           <ul>
             {[1, 2, 3, 4, 5].map((value, index) => (
               <li key={index} onClick={() => handleStarCLick(value)}>
@@ -66,6 +56,17 @@ const ReviewForm = ({ fishingHoleId }) => {
             ))}
           </ul>
         </div>
+      <div className="comment-form">
+        <label>
+          Review:
+          <input
+            type="text"
+            name="text"
+            value={formData.text}
+            onChange={handlechange}
+          />
+        </label>
+        
         <button type="submit">Add</button>
       </div>
     </form>

@@ -11,3 +11,10 @@ class FishingHole(models.Model):
     longitude = models.FloatField(max_length=225)
     parking = models.CharField(max_length=225)
     restroom = models.CharField(max_length=225)
+
+    def average_rating(self):
+        reviews = self.review_set.all()
+        if reviews.count() > 0:
+            return sum(review.rating for review in reviews) / reviews.count()
+        else:
+            return None
