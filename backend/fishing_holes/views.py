@@ -14,6 +14,9 @@ from .serializers import FishingHoleSerializer
 def get_all_fishing_holes(request):
     fishing_holes = FishingHole.objects.all()
     serializer = FishingHoleSerializer(fishing_holes, many=True)
+    for index, fishing_hole_data in enumerate(serializer.data):
+        fishing_hole = FishingHole.objects.get(pk=fishing_hole_data['id'])
+        serializer.data[index]['average_rating'] = fishing_hole.average_rating()
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
