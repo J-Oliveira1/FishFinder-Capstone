@@ -17,4 +17,4 @@ class FishingHole(models.Model):
         if reviews.count() > 0:
             return sum(review.rating for review in reviews) / reviews.count()
         else:
-            return None
+            return 0.0
