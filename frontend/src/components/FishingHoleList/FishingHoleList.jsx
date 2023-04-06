@@ -10,10 +10,15 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 
 const FishingHoleList = ({ fetchFishingHoles, fishingHoles }) => {
   const [fishingHoleToUpdate, setFishingHoleToUpdate] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [commentListOpen, setCommentListOpen] = useState(false);
+  const [reviewListOpen, setReviewListOpen] = useState(false);
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
+  const toggleCommentList = () => {
+    setCommentListOpen(!commentListOpen);
+  };
+
+  const toggleReviewList = () => {
+    setReviewListOpen(!reviewListOpen);
   };
 
   return (
@@ -43,13 +48,12 @@ const FishingHoleList = ({ fetchFishingHoles, fishingHoles }) => {
             Update
           </button>
             </div>
-          <CommentForm fishingHoleId={fishingHole.id} className="comment-form" />
-          <CommentList fishingHoleId={fishingHole.id} />
+            <CommentForm fishingHoleId={fishingHole.id} className="comment-form" />
+          <button onClick={toggleCommentList}>View Comments</button>
+          {commentListOpen && <CommentList fishingHoleId={fishingHole.id} />}
           <ReviewForm fishingHoleId={fishingHole.id} />
-          {isOpen && <ReviewList fishingHoleId={fishingHole.id} />}
-          <button onClick={toggleOpen}>
-            {isOpen ? "Hide Reviews" : "Show Reviews"}
-          </button>  
+          <button onClick={toggleReviewList}>View Reviews</button>
+          {reviewListOpen && <ReviewList fishingHoleId={fishingHole.id} />} 
         </div>
       ))}
     </div>
