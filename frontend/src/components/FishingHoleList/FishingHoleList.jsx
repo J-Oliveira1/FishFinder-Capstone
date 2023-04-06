@@ -10,6 +10,11 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 
 const FishingHoleList = ({ fetchFishingHoles, fishingHoles }) => {
   const [fishingHoleToUpdate, setFishingHoleToUpdate] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className="fishing-card " >
@@ -41,7 +46,10 @@ const FishingHoleList = ({ fetchFishingHoles, fishingHoles }) => {
           <CommentForm fishingHoleId={fishingHole.id} className="comment-form" />
           <CommentList fishingHoleId={fishingHole.id} />
           <ReviewForm fishingHoleId={fishingHole.id} />
-          <ReviewList fishingHoleId={fishingHole.id}/>  
+          {isOpen && <ReviewList fishingHoleId={fishingHole.id} />}
+          <button onClick={toggleOpen}>
+            {isOpen ? "Hide Reviews" : "Show Reviews"}
+          </button>  
         </div>
       ))}
     </div>
