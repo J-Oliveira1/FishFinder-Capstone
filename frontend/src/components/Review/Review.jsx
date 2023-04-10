@@ -7,15 +7,15 @@ const Review = ({ review }) => {
     }
 
   return (
-    <div>
-      <h5>Username: {review.username}</h5>
-      <p className="starRating"> 
-         {stars.map((star, index) => (
-            <i key={index} className={`fa ${star}`}></i>
-        ))}
-      </p>
-      <p>Review: {review.text}</p>
-    </div>
+<div>
+  <h5 style={{ display: "inline-block", margin: "0" }}>{review.username}</h5>
+  <p className="starRating" style={{ display: "inline-block", margin: "0 0 0 10px" }}>
+    {stars.map((star, index) => (
+      <i key={index} className={`fa ${star}`}></i>
+    ))}
+  </p>
+  <p>{review.text}</p>
+</div>
   );
 };
 
