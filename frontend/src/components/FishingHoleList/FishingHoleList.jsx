@@ -10,50 +10,81 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 
 const FishingHoleList = ({ fetchFishingHoles, fishingHoles }) => {
   const [fishingHoleToUpdate, setFishingHoleToUpdate] = useState(null);
-  const [commentListOpen, setCommentListOpen] = useState(false);
-  const [reviewListOpen, setReviewListOpen] = useState(false);
+  const [openCommentLists, setOpenCommentLists] = useState([]);
+  const [openReviewLists, setOpenReviewLists] = useState([]);
 
-  const toggleCommentList = () => {
-    setCommentListOpen(!commentListOpen);
+  const toggleCommentList = (fishingHoleId) => {
+    setOpenCommentLists((prevOpenCommentLists) => {
+      if (prevOpenCommentLists.includes(fishingHoleId)) {
+        return prevOpenCommentLists.filter((id) => id !== fishingHoleId);
+      } else {
+        return [...prevOpenCommentLists, fishingHoleId];
+      }
+    });
   };
 
-  const toggleReviewList = () => {
-    setReviewListOpen(!reviewListOpen);
+  const toggleReviewList = (fishingHoleId) => {
+    setOpenReviewLists((prevOpenReviewLists) => {
+      if (prevOpenReviewLists.includes(fishingHoleId)) {
+        return prevOpenReviewLists.filter((id) => id !== fishingHoleId);
+      } else {
+        return [...prevOpenReviewLists, fishingHoleId];
+      }
+    });
   };
 
   return (
-    <div className="fishing-card " >
+    <div className="fishing-card ">
       {fishingHoles.map((fishingHole) => (
         <div
           key={fishingHole.id}
-          className={fishingHole.selected ? "selected-fishing-hole" : "fishing-hole" }
+          className={
+            fishingHole.selected ? "selected-fishing-hole" : "fishing-hole"
+          }
         >
           <div>
-            <FishingHole 
+            <FishingHole
               fishingHole={fishingHole}
               fishingHoleId={fishingHole.id}
             />
           </div>
-          <div className="buttons" >
-
-          {fishingHoleToUpdate && (
-            <UpdateFishingHole
-            fishingHole={fishingHoleToUpdate}
-            setFishingHoleToUpdate={setFishingHoleToUpdate}
-            onupdate={fetchFishingHoles}
-            />
+          <div className="buttons">
+            {fishingHoleToUpdate && (
+              <UpdateFishingHole
+                fishingHole={fishingHoleToUpdate}
+                setFishingHoleToUpdate={setFishingHoleToUpdate}
+                onupdate={fetchFishingHoles}
+              />
             )}
-          <DeleteFishingHole id={fishingHole.id} ondelete={fetchFishingHoles} />
-          <button onClick={() => setFishingHoleToUpdate(fishingHole)}>
-            Update
+            <DeleteFishingHole
+              id={fishingHole.id}
+              ondelete={fetchFishingHoles}
+            />
+            <button onClick={() => setFishingHoleToUpdate(fishingHole)}>
+              Update
+            </button>
+          </div>
+          <CommentForm
+            fishingHoleId={fishingHole.id}
+            className="comment-form"
+          />
+          <button onClick={() => toggleCommentList(fishingHole.id)}>
+            {openCommentLists.includes(fishingHole.id)
+              ? "Hide Comments"
+              : "View Comments"}
           </button>
-            </div>
-            <CommentForm fishingHoleId={fishingHole.id} className="comment-form" />
-          <button onClick={toggleCommentList}>View Comments</button>
-          {commentListOpen && <CommentList fishingHoleId={fishingHole.id} />}
+          {openCommentLists.includes(fishingHole.id) && (
+            <CommentList fishingHoleId={fishingHole.id} />
+          )}
           <ReviewForm fishingHoleId={fishingHole.id} />
-          <button onClick={toggleReviewList}>View Reviews</button>
-          {reviewListOpen && <ReviewList fishingHoleId={fishingHole.id} />} 
+          <button onClick={() => toggleReviewList(fishingHole.id)}>
+            {openReviewLists.includes(fishingHole.id)
+              ? "Hide Reviews"
+              : "View Reviews"}
+          </button>
+          {openReviewLists.includes(fishingHole.id) && (
+            <ReviewList fishingHoleId={fishingHole.id} />
+          )}
         </div>
       ))}
     </div>

@@ -5,7 +5,7 @@ import FishPost from "../FishPost/FishPost";
 import FishPostForm from "../FishPostForm/FishPostForm";
 import "../FishingHoleDetailPage/FishingHoleDetailPage.css";
 
-const FishingHoleDetailPage = ({}) => {
+const FishingHoleDetailPage = () => {
   const { fishingHoleId } = useParams();
   const [fishPosts, setFishPosts] = useState([]);
   const [biggestFishPost, setBiggestFishPost] = useState(null);
