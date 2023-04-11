@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
+import "../HomePage/HomePage.css"
 
 const HomePage = () => {
   const { user, token, config } = useAuth();
@@ -26,7 +27,7 @@ const HomePage = () => {
   }, [token, user.username]);
 
   return (
-    <div className="container padding">
+    <div className="container padding lettering ">
       <h1>Welcome {user.username}!</h1>
       <h3>User Fishing Holes</h3>
       <br />

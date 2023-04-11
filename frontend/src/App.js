@@ -11,7 +11,6 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";

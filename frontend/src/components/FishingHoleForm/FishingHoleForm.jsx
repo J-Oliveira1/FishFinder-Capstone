@@ -43,7 +43,7 @@ const FishingHoleForm = () => {
   }
 
   return (
-    <div class="form-wrapper">
+    <div className="form-wrapper">
       <div className="form-container">
         <h4>Add New Fishing Hole</h4>
         <form onSubmit={handleSubmit} className="fishing-hole-form">
