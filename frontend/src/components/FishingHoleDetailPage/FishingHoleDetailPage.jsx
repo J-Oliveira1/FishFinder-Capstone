@@ -47,7 +47,7 @@ const FishingHoleDetailPage = () => {
       <h3 className="fishing-holeid">Fishing Hole: {fishingHoleId}</h3>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <div style={{ flex: "1", marginRight: "20px" }}>
-        <div>
+          <div>
             {biggestFishPost && (
               <div className="winner">
                 <h3>Biggest Fish!</h3>
@@ -64,14 +64,14 @@ const FishingHoleDetailPage = () => {
             userFishPost={userFishPost}
             biggestFishPost={biggestFishPost}
           />
-
         </div>
         <div style={{ flex: "1" }}>
           <h3 className="fishing-postid">Fish Posts</h3>
           <div className="fish-posts">
             {fishPosts.map((fishPost) => (
               <div key={fishPost.id} className="card-1">
-                <FishPost className="border-2"
+                <FishPost
+                  className="border-2"
                   fishPost={fishPost}
                   fishingHoleId={fishingHoleId}
                   setFishPosts={setFishPosts}

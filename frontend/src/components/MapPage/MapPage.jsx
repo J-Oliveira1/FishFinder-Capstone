@@ -46,10 +46,6 @@ const MapPage = () => {
     } catch (error) {}
   };
 
-  const handlePlaceSelect = (place) => {
-    setSelectedPlace(place);
-  };
-
   const handleMapClick = async (event) => {
     const latitude = event.latLng.lat();
     const longitude = event.latLng.lng();
@@ -120,27 +116,26 @@ const MapPage = () => {
         onClick={handleMapClick}
       >
         {fishingHoles.map((fishingHole) => (
-    <Marker
-    key={fishingHole.id}
-    position={{ lat: fishingHole.latitude, lng: fishingHole.longitude }}
-    icon={{
-      url:
-        fishingHole.selected
-          ? selectedMarkerIcon
-          : defaultMarkerIcon,
-      scaledSize: new window.google.maps.Size(40, 40),
-      anchor: { x: 20, y: 20 },
-    }}
-    onClick={() => handleMarkerClick(fishingHole)}
-  >
-    {selectedMarker === fishingHole && (
-      <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
-        <div>
-          User: {fishingHole.username} Address: {fishingHole.address}
-        </div>
-      </InfoWindow>
-    )}
-  </Marker>
+          <Marker
+            key={fishingHole.id}
+            position={{ lat: fishingHole.latitude, lng: fishingHole.longitude }}
+            icon={{
+              url: fishingHole.selected
+                ? selectedMarkerIcon
+                : defaultMarkerIcon,
+              scaledSize: new window.google.maps.Size(40, 40),
+              anchor: { x: 20, y: 20 },
+            }}
+            onClick={() => handleMarkerClick(fishingHole)}
+          >
+            {selectedMarker === fishingHole && (
+              <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
+                <div>
+                  User: {fishingHole.username} Address: {fishingHole.address}
+                </div>
+              </InfoWindow>
+            )}
+          </Marker>
         ))}
       </GoogleMap>
       <FishingHoleForm />
