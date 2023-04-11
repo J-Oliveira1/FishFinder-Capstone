@@ -1,7 +1,6 @@
 import FishingHoleList from "../FishingHoleList/FishingHoleList";
 import FishingHoleForm from "../FishingHoleForm/FishingHoleForm";
 import { useEffect, useState } from "react";
-
 import {
   GoogleMap,
   useLoadScript,
@@ -56,20 +55,28 @@ const MapPage = () => {
     const longitude = event.latLng.lng();
     const clickedLocation = { latitude, longitude };
     setClickedLocation(clickedLocation);
+    setSelectedMarker(null);
     console.log(clickedLocation);
   };
 
   const handleMarkerClick = (marker) => {
-    const updatedFishingHoles = fishingHoles.map((fishingHole) => {
-      if (fishingHole.id === marker.id) {
-        return { ...fishingHole, selected: true };
-      } else {
-        return { ...fishingHole, selected: false };
-      }
-    });
-    setFishingHoles(updatedFishingHoles);
-    setSelectedMarker(marker);
+    if (marker === selectedMarker) {
+      setSelectedMarker(null);
+      highlightFishingHole(null);
+    } else {
+      const updatedFishingHoles = fishingHoles.map((fishingHole) => {
+        if (fishingHole.id === marker.id) {
+          return { ...fishingHole, selected: true };
+        } else {
+          return { ...fishingHole, selected: false };
+        }
+      });
+      setFishingHoles(updatedFishingHoles);
+      setSelectedMarker(marker);
+      highlightFishingHole(marker.id);
+    }
   };
+
   const highlightFishingHole = (fishingHoleId) => {
     const updatedFishingHoles = fishingHoles.map((fishingHole) => {
       if (fishingHole.id === fishingHoleId) {
@@ -85,7 +92,7 @@ const MapPage = () => {
   if (!isLoaded) return "Loading maps";
 
   return (
-    <div className="padding " >
+    <div className="padding ">
       <Autocomplete
         onLoad={(autocomplete) => setAutocomplete(autocomplete)}
         onPlaceChanged={() => {
@@ -99,7 +106,7 @@ const MapPage = () => {
           style={{ width: "100%", textAlign: "center" }}
         />
       </Autocomplete>
-      <GoogleMap 
+      <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
         center={
@@ -113,30 +120,32 @@ const MapPage = () => {
         onClick={handleMapClick}
       >
         {fishingHoles.map((fishingHole) => (
-          <Marker
-            key={fishingHole.id}
-            position={{ lat: fishingHole.latitude, lng: fishingHole.longitude }}
-            icon={
-              selectedMarker === fishingHole
-                ? selectedMarkerIcon
-                : defaultMarkerIcon
-            }
-            onClick={() => highlightFishingHole(fishingHole.id)}
-          >
-            {selectedMarker === fishingHole.id && (
-              <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
-                <div>
-                  User: {selectedMarker.username} Address:{" "}
-                  {selectedMarker.address}
-                </div>
-              </InfoWindow>
-            )}
-          </Marker>
+    <Marker
+    key={fishingHole.id}
+    position={{ lat: fishingHole.latitude, lng: fishingHole.longitude }}
+    icon={{
+      url:
+        fishingHole.selected
+          ? selectedMarkerIcon
+          : defaultMarkerIcon,
+      scaledSize: new window.google.maps.Size(40, 40),
+      anchor: { x: 20, y: 20 },
+    }}
+    onClick={() => handleMarkerClick(fishingHole)}
+  >
+    {selectedMarker === fishingHole && (
+      <InfoWindow onCloseClick={() => setSelectedMarker(null)}>
+        <div>
+          User: {fishingHole.username} Address: {fishingHole.address}
+        </div>
+      </InfoWindow>
+    )}
+  </Marker>
         ))}
       </GoogleMap>
-      <FishingHoleForm/>
-      <h2 className="border-two" >List of Fishing Holes</h2>
-      <FishingHoleList 
+      <FishingHoleForm />
+      <h2 className="fishing-postid">List of Fishing Holes</h2>
+      <FishingHoleList
         fetchFishingHoles={fetchFishingHoles}
         fishingHoles={fishingHoles}
         setFishingHoles={setFishingHoles}

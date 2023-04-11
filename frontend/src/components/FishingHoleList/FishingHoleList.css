@@ -1,10 +1,14 @@
-.selected-fishing-hole {
-    background-color: #f0f0f0;
-    border: 2px solid #00b300;
+  .selected-fishing-hole,
+  .fishing-hole {
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
     margin: 5px 0;
   }
-
+  
+  .selected-fishing-hole {
+    border: 3px solid #007700;
+  }
+  
   .fishing-card {
     display: flex;
     flex-wrap: wrap;
@@ -12,12 +16,12 @@
     flex-direction: row;
     padding: 10px;
     margin: 5px 0;
+    gap: 10px;
   }
   
   .fishing-hole {
-    border: 2px solid black;
-    padding: 10px;
-    margin: 5px;
+    border: 2px solid #333;
+    border-radius: 10px;
   }
 
   .buttons {

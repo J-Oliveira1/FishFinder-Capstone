@@ -44,17 +44,10 @@ const FishingHoleDetailPage = () => {
 
   return (
     <div className="padding">
-      <h3 className="">Fishing Hole: {fishingHoleId}</h3>
+      <h3 className="fishing-holeid">Fishing Hole: {fishingHoleId}</h3>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <div style={{ flex: "1", marginRight: "20px" }}>
-          <FishPostForm
-            fishingHoleId={fishingHoleId}
-            setFishPosts={setFishPosts}
-            handleNewPost={handleNewPost}
-            userFishPost={userFishPost}
-            biggestFishPost={biggestFishPost}
-          />
-          <div>
+        <div>
             {biggestFishPost && (
               <div className="winner">
                 <h3>Biggest Fish!</h3>
@@ -64,13 +57,21 @@ const FishingHoleDetailPage = () => {
               </div>
             )}
           </div>
+          <FishPostForm
+            fishingHoleId={fishingHoleId}
+            setFishPosts={setFishPosts}
+            handleNewPost={handleNewPost}
+            userFishPost={userFishPost}
+            biggestFishPost={biggestFishPost}
+          />
+
         </div>
         <div style={{ flex: "1" }}>
-          <h3 className="border-1">Fish Posts</h3>
+          <h3 className="fishing-postid">Fish Posts</h3>
           <div className="fish-posts">
             {fishPosts.map((fishPost) => (
               <div key={fishPost.id} className="card-1">
-                <FishPost
+                <FishPost className="border-2"
                   fishPost={fishPost}
                   fishingHoleId={fishingHoleId}
                   setFishPosts={setFishPosts}

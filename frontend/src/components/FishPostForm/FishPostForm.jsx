@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import "../FishPostForm/FishPostForm.css"
+import "../FishPostForm/FishPostForm.css";
 
 const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
   const [numPosts, setNumPosts] = useState(0);
@@ -48,47 +48,48 @@ const FishPostForm = ({ fishingHoleId, setFishPosts, biggestFishPost }) => {
   };
 
   return (
-    <div>
-      <h4 className="border-1 ">Add New Fish Post</h4>
-      {user ? (
-        <form onSubmit={handleSubmit} className="fish-post-form spacing">
-          <label>
-            <input
-              type="text"
-              placeholder="Type of Fish"
-              id="type"
-              value={formData.type}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <br/>
-          <label>
-            <input
-              type="text"
-              placeholder="Size of Fish"
-              id="size"
-              value={formData.size}
-              onChange={handleChange}
-              required
-            />
-          </label>
-          <br/>
-          <label>
-            <input
-              type="file"
-              id="image"
-              accept="image/png, image/jpeg"
-              onChange={handleImageChange}
-              required
-            />
-          </label>
-          <button type="submit">Add</button>
-        </form>
-      ) : (
-        <p>Please log in to add a new fish post.</p>
-      )}
-    </div>
+<div className="form-container">
+  <div className="form-header">
+    <h4>Add New Fish Post</h4>
+  </div>
+  {user ? (
+    <form onSubmit={handleSubmit} className="fish-post-form spacing">
+      <label>
+        <input
+          type="text"
+          placeholder="Type of Fish"
+          id="type"
+          value={formData.type}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <label>
+        <input
+          type="text"
+          placeholder="Size of Fish"
+          id="size"
+          value={formData.size}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <label>
+        <input
+          type="file"
+          id="image"
+          accept="image/png, image/jpeg"
+          onChange={handleImageChange}
+          required
+        />
+      </label>
+      <button type="submit">Add</button>
+    </form>
+  ) : (
+    <p>Please log in to add a new fish post.</p>
+  )}
+</div>
+
   );
 };
 
