@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import "../HomePage/HomePage.css"
 
+
 const HomePage = () => {
   const { user, token, config } = useAuth();
   const [fishingSpots, setFishingSpots] = useState();
@@ -27,7 +28,7 @@ const HomePage = () => {
   }, [token, user.username]);
 
   return (
-    <div className="container padding lettering ">
+    <div className="about-us alighment">
       <h1>Welcome {user.username}!</h1>
       <h3>User Fishing Holes</h3>
       <br />
