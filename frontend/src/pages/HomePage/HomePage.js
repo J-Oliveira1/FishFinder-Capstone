@@ -29,7 +29,7 @@ const HomePage = () => {
 
   return (
     <div className="about-us alighment">
-      <h1>Welcome {user.username}!</h1>
+      <h2>Welcome {user.username}!</h2>
       <h3>User Fishing Holes</h3>
       <br />
 
